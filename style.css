@@ -1,3 +1,13 @@
+/* To be able to use a height
+(min-height) on a block, his direct parent must himself have a
+determined height (auto): height in
+pixels, em, other units ...).
+If the height of the parent is in percentage, then it refers to the
+height of the "grandfather", and so on.
+To use a "minimum height: 100%" on the global #, we need:
+- a parent (body) in "height: 100%";
+- the parent of body also in "height: 100%". */
+
 html, body {
     height: 100%;
 }
