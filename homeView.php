@@ -22,6 +22,8 @@
                         <p><?= $post['content'] ?></p>
                         <p><?= $post['author'] ?></p>
                         <?php
+                            // Access to the database:
+                            $db = new PDO('mysql:host=localhost;dbname=simpleBlog;charset=utf8', 'root', 'root');
                             // Counting comments with joins between posts and comments tables:
                             $req = $db->query('SELECT p.id, p.title, p.content, p.author, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, COUNT(c.post_id) AS nb_comments FROM posts AS p LEFT JOIN comments AS c ON c.post_id = p.id WHERE p.id = ' . $post['id'] . ' GROUP BY post_id ORDER BY creation_date DESC');
                             $data = $req->fetch(); 
