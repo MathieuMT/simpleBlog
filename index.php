@@ -7,11 +7,12 @@ try {
     // Call the function that displays all posts in descending of dates:
     $posts = getPosts();
 
-    // Access link to the display:
+    // Access link to display the homeView.php:
     require 'homeView.php';
 }
 catch (Exception $e) {
-    echo '<html><body>Erreur ! ' . $e->getMessage() . '</body></html>';
+    $errorMsg = $e->getMessage();
+    require 'errorView.php';
 }
 
 
