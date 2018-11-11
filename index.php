@@ -1,10 +1,11 @@
 <?php
+// Data access link:
+require 'Model.php';
 
-// Access to data:
-$db = new PDO('mysql:host=localhost;dbname=simpleBlog;charset=utf8', 'root', 'root');
-$posts = $db->query('SELECT id, title, content, author, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC');
+// Call the function that displays all posts in descending of dates:
+$posts = getPosts();
 
-// Display
+// Access link to the display:
 require 'homeView.php';
 
 
