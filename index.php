@@ -1,18 +1,30 @@
 <?php
-// Data access link:
-require 'Model.php';
+// Access to the controller:
+require 'Controller.php';
 
 
 try {
-    // Call the function that displays all posts in descending of dates:
-    $posts = getPosts();
-
-    // Access link to display the homeView.php:
-    require 'homeView.php';
+   if (isset($_GET['action'])) {
+       if ($_GET['action'] == 'post') {
+           if (isset($_GET['id'])) {
+               $postId = intval($_GET['id']);
+               if ($postId != 0)
+                   post($postId);
+               else
+                   throw new Exception("Identifiant de billet non valide");
+           }
+           else
+               throw new Exception("Identifiant de billet non défini");
+       }
+       else 
+        throw new Exception("Action non valide");
+   }
+    else {
+        home(); // Default action
+    }
 }
 catch (Exception $e) {
-    $errorMsg = $e->getMessage();
-    require 'errorView.php';
+    error($e->getMessage());
 }
 
 

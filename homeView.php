@@ -5,7 +5,7 @@
 <?php foreach ($posts as $post): ?>
     <article>
         <header>
-            <a href="<?= "post.php?id=" . $post['id'] ?>">    <h1 class="postTitle"><?= $post['title'] ?>    </h1>
+            <a href="<?= "index.php?action=post&amp;id=" . $post['id'] ?>">    <h1 class="postTitle"><?= $post['title'] ?>    </h1>
             </a>
             <time><?= $post['creation_date_fr'] ?></time>
         </header>
