@@ -1,6 +1,6 @@
 <?php
 // Access to the controller:
-require 'Controller.php';
+require 'Controller/Controller.php';
 
 
 try {
