@@ -1,7 +1,7 @@
-<?php $title = "Jean Forteroche - " . $post['title']; ?>
+<?php $this->title = "Jean Forteroche - " . $post['title']; ?>
 
 
-<?php ob_start(); ?>
+
 <article>
     <header>
         <h1 class="postTitle"><?= $post['title'] ?></h1>
@@ -18,7 +18,6 @@
     <p><?= $comment['author'] ?> dit :</p>
     <p><?= $comment['comment'] ?></p>
 <?php endforeach; ?>
-<?php $content = ob_get_clean(); ?>
 
 
-<?php require 'View/template.php'; ?>
+

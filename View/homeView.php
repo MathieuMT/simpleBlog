@@ -1,7 +1,7 @@
 <!-- Home view -->
-<?php $title = 'Jean Forteroche'; ?>
+<?php $this->title = 'Jean Forteroche'; ?>
 
-<?php ob_start(); ?>           
+           
 <?php foreach ($posts as $post): ?>
     <article>
         <header>
@@ -22,6 +22,6 @@
     </article>
     <hr />
 <?php endforeach; ?>
-<?php $content = ob_get_clean(); ?>
 
-<?php require 'View/template.php'; ?>            
+
+          
