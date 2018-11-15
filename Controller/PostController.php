@@ -21,4 +21,12 @@ class PostController {
         $view = new View("postView");
         $view->generate(array('post' => $post, 'comments' => $comments));
     }
+    
+    // Add a comment to a post:
+    public function comment($author, $content, $postId) {
+        // Save the comment:
+        $this->comment->addComment($author, $content, $postId);
+        // Refresh post display:
+        $this->post($postId);
+    }
 }

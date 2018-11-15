@@ -19,19 +19,21 @@ class Router {
         try {
             if (isset($_GET['action'])) {
                 if ($_GET['action'] == 'post') {
-                    if (isset($_GET['id'])) {
-                        $postId = intval($_GET['id']);
+                        $postId = intval($this->getParameter($_GET, 'id'));
                         if ($postId != 0) {
                             $this->postCtrl->post($postId);
                         }
                         else
                             throw new Exception("Identifiant de billet non valide");
-                    }
-                    else
-                        throw new Exception("Identifiant de billet non défini");
+                }
+                else if ($_GET['action'] == 'comment') {
+                        $author = $this->getParameter($_POST, 'author');
+                        $content = $this->getParameter($_POST, 'content');
+                        $postId = $this->getParameter($_POST, 'id');
+                        $this->postCtrl->comment($author, $content, $postId);
                 }
                 else
-                    throw new Exception("Action non valide");
+                        throw new Exception("Action non valide");
             }
             else { // No action set: home view:
                 $this->homeCtrl->home();
@@ -46,5 +48,14 @@ class Router {
     private function error($errorMsg) {
         $view = new View("errorView");
         $view->generate(array('errorMsg' => $errorMsg));
+    }
+    
+    // Search a parameter in a table:
+    private function getParameter($table, $name) {
+        if (isset($table[$name])) {
+            return $table[$name];
+        }
+        else
+            throw new Exception("Paramètre '$name' absent");
     }
 }

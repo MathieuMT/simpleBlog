@@ -10,4 +10,11 @@ class CommentManager extends Model {
         $comments = $this->executeQuery($sql, array($postId));
         return $comments;
     }
+    
+    // Add a comment in the database:
+    public function addComment($author, $content, $postId) {
+        $sql = 'INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, ?)';
+        $date = date(DATE_W3C); // Get the current date.
+        $this->executeQuery($sql, array($postId, $author, $content, $date));
+    }
 }
