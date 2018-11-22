@@ -12,7 +12,7 @@ class PostManager extends Model {
     
         $posts = $this->executeQuery($sql);
         return $posts;
-    }
+   }
     
     // Returns information on a post:
     public function getPost($postId) {
@@ -24,5 +24,19 @@ class PostManager extends Model {
             throw new Exception("Aucun billet ne correspond à l'identifiant '$postId'");
     }
     
+    public function getPostsWithNumberOfComments() {
+
+        $sql = 'SELECT p.*, DATE_FORMAT(p.creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, COUNT(c.post_id) AS nb_comments FROM posts p LEFT JOIN comments c ON p.id = c.post_id GROUP BY p.id, c.post_id';
+        $nbCommentByPost = $this->executeQuery($sql);
+        $articles = $nbCommentByPost->fetchAll();
+        //var_dump($articles);
+        return $articles;
+    }
+    
 }
 
+
+
+
+  
+      

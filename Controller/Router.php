@@ -37,7 +37,6 @@ class Router {
             }
             else { // No action set: home view:
                 $this->homeCtrl->home();
-                
             }
         }
         catch (Exception $e) {
