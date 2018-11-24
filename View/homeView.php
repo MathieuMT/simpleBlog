@@ -11,7 +11,7 @@
         </header>
             <p><?= $post['content'] ?></p>
             <p><?= $post['author'] ?></p>
-            <p class="nbComs"><?= $post['nb_comments'] ?> Commentaire(s)</p>
+            <p class="nbComs"><?= $post['nb_comments'] ?> Commentaire<?php if($post['nb_comments'] > 1) echo 's';?></p>
     </article>
     <hr />
 <?php endforeach; ?>
