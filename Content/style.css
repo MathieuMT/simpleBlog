@@ -7,15 +7,19 @@ height of the "grandfather", and so on.
 To use a "minimum height: 100%" on the global #, we need:
 - a parent (body) in "height: 100%";
 - the parent of body also in "height: 100%". */
-
+*{
+    box-sizing: border-box;
+}
 html, body {
     height: 100%;
 }
 
 body {
+    margin:0;
     color: #bfbfbf;
     background: black;
-    font-family: 'Futura-Medium', 'Futura', 'Trebuchet MS', sans    -serif;
+    font-family: 'Futura-Medium', 'Futura', 'Trebuchet MS', sans-serif;
+    padding-bottom: 9%;
 }
 
 h1 {
@@ -28,6 +32,10 @@ h1 {
 
 .nbComs{
     text-align: right;
+}
+
+#buffer_block {
+    height: 0;
 }
 
 #global {
@@ -55,4 +63,103 @@ h1 {
     width: 50%;
 }
 
+.header {
+    background-color: #2f404f;
+}
 
+.header-top {
+    display: flex;
+    height: 75px;
+    padding: 0 15px;
+}
+
+.logo {
+    display: flex;
+    flex-basis: 90%;
+    align-items: center;
+}
+
+.btn-menu {
+    flex-basis: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.btn-menu button.btn_nav {
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.btn-menu i {
+    font-size: 25px;
+    color: #bfbfbf;
+}
+
+.nav {
+    display: none;
+    flex-direction: column;
+}
+
+.nav.open {
+    display: flex;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #bfbfbf;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px 15px 15px 0;
+    border-top: 1px solid black;
+    text-align: right;
+}
+
+#registration_wrapper {
+    text-align: center;
+}
+
+#form_registration table {
+    margin: auto;
+}
+
+td.label {
+    text-align: right;
+}
+
+
+@media screen and (min-width: 768px){
+    
+    #buffer_block {
+        height: 9%;
+    }
+    
+    .header {
+        display: flex;
+        width: 100%;
+        position: fixed;
+    }
+    
+    .btn-menu {
+        display: none;
+    }
+    
+    .header-top {
+        flex-basis: 40%;
+    }
+    
+    .nav {
+        display: flex;
+        flex-direction: row;
+        flex-basis: 60%;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: 15px;
+    }
+    
+    .nav a {
+        border-top: none;
+    }
+}

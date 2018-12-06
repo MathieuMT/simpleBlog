@@ -21,12 +21,13 @@ class View {
         echo $view;
     }
     
+    
     // Generates a view and returns the result produced:
     private function generateFile($file, $data) {
         if (file_exists($file)) {
             // Makes the $data array elements accessible in the view:
             extract($data);
-            // Staarting the exit delay:
+            // Starting the exit delay:
             ob_start();
             // Includes the view file
             // Its result is placed in the output buffer:
