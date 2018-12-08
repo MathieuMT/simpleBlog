@@ -4,11 +4,13 @@ require_once 'Model/Model.php';
 
 class RegistrationManager extends Model {
     
+    private $role= "membre";
+    
     public function addNewMember($role, $nickname, $hashPass, $email) {
         
         $sql = 'INSERT INTO members(role, nickname, pass, email, registration_date) VALUES(:role, :nickname, :pass, :email, CURDATE())';
         
-        $newMember = $this->executeQuery($sql, array('role' => 'membre', 'nickname' => $nickname, 'pass' => $hashPass, 'email' => $email));
+        $newMember = $this->executeQuery($sql, array('role' => $this->role, 'nickname' => $nickname, 'pass' => $hashPass, 'email' => $email));
     }
     
     public function checkNickname($nickname) {
@@ -26,5 +28,7 @@ class RegistrationManager extends Model {
         $req = $this->executeQuery($sql, array($email));
         $result = $req->rowCount();
     }
+    
+   
     
 }

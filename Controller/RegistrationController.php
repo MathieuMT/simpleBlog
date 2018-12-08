@@ -5,7 +5,9 @@ require_once 'View/View.php';
 class RegistrationController {
     
     private $registeredMember;
-    
+    private $error;
+    private $success;
+    private $role = "membre";
     public function __construct() {
         $this->registeredMember = new RegistrationManager();
     }
@@ -71,12 +73,12 @@ class RegistrationController {
                                     
                                    
                                     
-                                    $newMember = $this->registeredMember->addNewMember($role, $nickname, $hashPass, $email);
+                                    $newMember = $this->registeredMember->addNewMember($this->role, $nickname, $hashPass, $email);
                                     
                                     
                                     $success['registration'] = 'Votre inscription est bien enregistrée !';
                                     
-                                    
+                                  
                                     
                                     
                                 }
@@ -109,9 +111,9 @@ class RegistrationController {
                 $error['fields'] = 'Tous les champs doivent être remplis!';
             }
         }
-        
+         
         $view = new View('registrationView');
-        $view->generate(['error' => $error, 'success' => $success]); 
+        $view->generate(['error' => $this->error, 'success' => $this->success]); 
              
         
     }

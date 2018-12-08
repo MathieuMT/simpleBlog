@@ -46,7 +46,7 @@
                     <br />
                     <input type="submit" value="S'inscrire" name="btn_inscription" /><span><?php if (isset($success)) {echo $success['registration'] ;} ?></span>
                 </td>
-                <td><span><?php if (isset($success)) {echo $success['fields'] ;} ?></span></td>
+                <td><span><?php if (isset($error)) {echo $error['fields'] ;} ?></span></td>
             </tr>
         </table>
     </form>

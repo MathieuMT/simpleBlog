@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:8889
--- Généré le :  Mar 04 Décembre 2018 à 19:10
+-- Généré le :  Sam 08 Décembre 2018 à 19:46
 -- Version du serveur :  5.6.35
 -- Version de PHP :  7.1.1
 
@@ -60,8 +60,8 @@ CREATE TABLE `members` (
   `pass` text NOT NULL,
   `email` varchar(255) NOT NULL,
   `registration_date` datetime NOT NULL,
-  `avatar` text NOT NULL,
-  `signature` text NOT NULL
+  `avatar` text,
+  `signature` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -97,7 +97,20 @@ INSERT INTO `members` (`id`, `role`, `nickname`, `pass`, `email`, `registration_
 (26, 'membre', 'Zaze', '$2y$10$FurFaA4GWXInXGI35nI/mOQ/RLa/rn.MhdcRKdn9HceSLJ13pfAb2', 'zaze@free.fr', '2018-12-03 00:00:00', '', ''),
 (27, 'membre', 'Titi', '$2y$10$16wfBK7A4hZ9jeHoi/7CTudwd3oEzRMxFPsx2F8PQKO9is9JOYSKC', 'titi@free.fr', '2018-12-03 00:00:00', '', ''),
 (28, 'membre', 'Titi', '$2y$10$eqqJtFJjkPxweeExLPksle7y092LDg0OnXieblTk9NsebWdGRUWBO', 'titi@free.fr', '2018-12-03 00:00:00', '', ''),
-(29, 'membre', 'Toto', '$2y$10$t0vQS2ryeysvkVjwnYIG3.9a4T32p6MgtyNRPJurQ5Kzh5WgJ6g2.', 'toto@free.fr', '2018-12-03 00:00:00', '', '');
+(29, 'membre', 'Toto', '$2y$10$t0vQS2ryeysvkVjwnYIG3.9a4T32p6MgtyNRPJurQ5Kzh5WgJ6g2.', 'toto@free.fr', '2018-12-03 00:00:00', '', ''),
+(30, 'membre', 'Lolo', '$2y$10$kXCU/v6s8iEs8jTVv0pUj.uhQx5p9e9zFd5gGzrfzhkpLwhHtoQk6', 'lolo@free.fr', '2018-12-08 00:00:00', '', ''),
+(31, 'membre', 'Lolo', '$2y$10$7KeB/AqqvEiGHxLDfsL/3OzFaor1CqrZXA2KHf2EE2ah1awELb2YK', 'lolo@free.fr', '2018-12-08 00:00:00', '', ''),
+(32, 'membre', 'Lolo', '$2y$10$TFoSUVJUfDVO1mmsSIk/ruG4aU53tsrxV1FyeStwObZZqGOGIr3W6', 'lolo@free.fr', '2018-12-08 00:00:00', '', ''),
+(33, 'membre', 'Mama', '$2y$10$Oyz0n3WF6GT9RNWI9kPCGuh0anmC/SM7M0P14XQC2HU0Sqh0JqBFq', 'mama@free.fr', '2018-12-08 00:00:00', '', ''),
+(34, 'membre', 'Mama', '$2y$10$Oiqwhbrgw5EJEjfhHTM4heYE/B2xGUm2qIDdxWoFFDMzlKB/rh7ga', 'mama@free.fr', '2018-12-08 00:00:00', '', ''),
+(35, 'membre', 'Mama', '$2y$10$tWxebd4we.lHTQQwElYuKuSPiQLcEi./finDa08ro7Novll8IZmTu', 'mama@free.fr', '2018-12-08 00:00:00', NULL, NULL),
+(36, 'membre', 'Mama', '$2y$10$ea/KpGWI5tFNOYb.DKUhdOQyiD7LKqiMwQue1t2rN7RODF7AwjI3W', 'mama@free.fr', '2018-12-08 00:00:00', NULL, NULL),
+(37, 'membre', 'Mama', '$2y$10$EZa8fBgjwsXbHey/HgrQM.qRnxQ.7uyCyE77FV265cqxr0kz06olK', 'mama@free.fr', '2018-12-08 00:00:00', NULL, NULL),
+(38, 'membre', 'Mama', '$2y$10$saknJcYvvYJ4GdNyz75kD.HwllhSMT8V3UBHYi5qfsoCPZm5kBtXa', 'mama@free.fr', '2018-12-08 00:00:00', NULL, NULL),
+(39, 'membre', 'Mama', '$2y$10$DmR94YBH7VwAnNHIQXaRluwVpLULjtwKFTq7GSHYDRapokbEWIbq.', 'mama@free.fr', '2018-12-08 00:00:00', NULL, NULL),
+(40, 'membre', 'Bibi', '$2y$10$XdMxFjrQv4hiVopvRWs4UeMce586OPApAvqmwUsjvjvB/cpe5Wu1S', 'bibi@free.fr', '2018-12-08 00:00:00', NULL, NULL),
+(41, 'membre', 'Bibi', '$2y$10$xz7eMKAp.eAbRGWuet6kBuw8C99PYnDafKBfwkK6ocrA98DV1b8li', 'bibi@free.fr', '2018-12-08 00:00:00', NULL, NULL),
+(42, 'membre', 'Bobo', '$2y$10$c0wMEEdtQZY063wksuO1qe7dEDM66mhQvqm/VL8r6bJt3w2DIV5yq', 'bobo@free.fr', '2018-12-08 00:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -156,7 +169,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT pour la table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT pour la table `posts`
 --
