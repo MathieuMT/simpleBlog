@@ -7,6 +7,7 @@ class RegistrationController {
     private $registeredMember;
     private $error;
     private $success;
+    
     private $role = "membre";
     public function __construct() {
         $this->registeredMember = new RegistrationManager();
@@ -43,7 +44,7 @@ class RegistrationController {
                 
                 $lenghtNickname = strlen($nickname);
         
-                if ($lenghtNickname <= 255) {
+                if (($lenghtNickname >= 3) && ($lenghtNickname <= 25)) {
                     
                     /* We check the existence of the nickname in the database: */
                     $existingNickname = $this->registeredMember->checkNickname($nickname);
@@ -74,44 +75,43 @@ class RegistrationController {
                                    
                                     
                                     $newMember = $this->registeredMember->addNewMember($this->role, $nickname, $hashPass, $email);
+                                    if ($newMember) {
+                                        $this->success = 'Votre inscription est bien enregistrée !';
+                                    }
                                     
-                                    
-                                    $success['registration'] = 'Votre inscription est bien enregistrée !';
-                                    
-                                  
-                                    
-                                    
+                        
                                 }
                                 else {
-                                    $error['email'] = 'L\'adresse ' . $email . ' n\'est pas une adresse email valide,veuillez recommencer !';
+                                    $this->error = 'L\'adresse ' . $email . ' n\'est pas une adresse email valide,veuillez recommencer !';
                                 }
                                 
                             }
                             else {
-                                $error['pass'] = 'Vos mots de passe ne correspondent pas !<br />Veuillez rentrer à nouveau votre mot de passe et la confirmation de votre mot de passe de manière identique !';
+                                $this->error = 'Vos mots de passe ne correspondent pas !<br />Veuillez rentrer à nouveau votre mot de passe et la confirmation de votre mot de passe de manière identique !';
                             }
                             
                         }
                         else {
-                            $error['email'] = 'Votre adresse email est déjà utilisée !';
+                            $this->error = 'Votre adresse email est déjà utilisée !';
                         }
                        
                     }
                     else {
-                        $error['nickname'] = 'Ce pseudo est déjà utilisé, veuillez en choisir un autre !';
+                        $this->error = 'Ce pseudo est déjà utilisé, veuillez en choisir un autre !';
                     }
                     
                 }
                 else {
-                    $error['nickname'] = "Votre pseudo ne doit pas dépasser 255 caractères !";
+                    $this->error = "Votre pseudo doit comprendre entre 3 et 25 caractères !";
                 }
                 
             }
             else {
-                $error['fields'] = 'Tous les champs doivent être remplis!';
+                $this->error = 'Tous les champs doivent être remplis!';
             }
         }
-         
+        
+        
         $view = new View('registrationView');
         $view->generate(['error' => $this->error, 'success' => $this->success]); 
              

@@ -129,6 +129,13 @@ td.label {
     text-align: right;
 }
 
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
 
 @media screen and (min-width: 768px){
     
