@@ -22,7 +22,7 @@ class Router {
             if (isset($_GET['action'])) {
                 if ($_GET['action'] == 'post') {
                         $postId = intval($this->getParameter($_GET, 'id'));
-                        if ($postId != 0) {
+                        if ($postId > 0) {
                             $this->postCtrl->post($postId);
                         }
                         else
@@ -38,9 +38,12 @@ class Router {
                     $this->registrCtrl->showFormRegistration();
                 }
                 else if ($_GET['action'] == 'registration') {
+                    $nickname = $this->getParameter($_POST, 'nickname');
+                    $pass = $this->getParameter($_POST, 'pass');
+                    $checkPass = $this->getParameter($_POST, 'checkpass');
+                    $email = $this->getParameter($_POST, 'email');
                     
-                    
-                    $this->registrCtrl->newMemberRegistration();             
+                    $this->registrCtrl->newMemberRegistration($nickname, $pass, $checkPass, $email);             
                 }
                 else
                         throw new Exception("Action non valide");

@@ -13,7 +13,7 @@
         <a href="#">Accueil</a>
         <a href="#">Les articles</a>
         <a href="#">Connection</a>
-        <a href="index.php?action=registration">Inscription</a>
+        <a href="index.php?action=showFormRegistration">Inscription</a>
     </nav>
 </header>
 

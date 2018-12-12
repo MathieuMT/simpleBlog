@@ -11,6 +11,12 @@ class RegistrationManager extends Model {
         $sql = 'INSERT INTO members(role, nickname, pass, email, registration_date) VALUES(:role, :nickname, :pass, :email, CURDATE())';
         
         $newMember = $this->executeQuery($sql, array('role' => $this->role, 'nickname' => $nickname, 'pass' => $hashPass, 'email' => $email));
+        
+        if ($newMember) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function checkNickname($nickname) {
@@ -19,6 +25,12 @@ class RegistrationManager extends Model {
         
         $req = $this->executeQuery($sql, array('nickname' => $nickname));
         $result = $req->fetch();
+        
+        if ($result) {
+            return true;
+        }else {
+            return false;
+        }
     }
     
     public function checkEmail($email) {
@@ -27,6 +39,13 @@ class RegistrationManager extends Model {
         
         $req = $this->executeQuery($sql, array($email));
         $result = $req->rowCount();
+        
+        if ($result) {
+            return true;
+        }else {
+            return false;
+        }
+        
     }
     
    
