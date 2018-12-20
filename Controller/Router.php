@@ -2,6 +2,7 @@
 
 require_once 'Controller/HomeController.php';
 require_once 'Controller/PostController.php';
+require_once 'Controller/RegistrationController.php';
 require_once 'View/View.php';
 
 class Router {
@@ -12,6 +13,7 @@ class Router {
     public function __construct() {
         $this->homeCtrl = new HomeController();
         $this->postCtrl = new PostController();
+        $this->registrCtrl = new RegistrationController();
     }
     
     // Processes an incoming request:
@@ -20,7 +22,7 @@ class Router {
             if (isset($_GET['action'])) {
                 if ($_GET['action'] == 'post') {
                         $postId = intval($this->getParameter($_GET, 'id'));
-                        if ($postId != 0) {
+                        if ($postId > 0) {
                             $this->postCtrl->post($postId);
                         }
                         else
@@ -31,6 +33,17 @@ class Router {
                         $content = $this->getParameter($_POST, 'content');
                         $postId = $this->getParameter($_POST, 'id');
                         $this->postCtrl->comment($author, $content, $postId);
+                }
+                else if ($_GET['action'] == 'showFormRegistration') {
+                    $this->registrCtrl->showFormRegistration();
+                }
+                else if ($_GET['action'] == 'registration') {
+                    $nickname = $this->getParameter($_POST, 'nickname');
+                    $pass = $this->getParameter($_POST, 'pass');
+                    $checkPass = $this->getParameter($_POST, 'checkpass');
+                    $email = $this->getParameter($_POST, 'email');
+                    
+                    $this->registrCtrl->newMemberRegistration($nickname, $pass, $checkPass, $email);             
                 }
                 else
                         throw new Exception("Action non valide");
