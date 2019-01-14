@@ -11,9 +11,9 @@
     </div>
     <nav class="nav">
         <a href="#">Accueil</a>
-        <a href="#">Les articles</a>
-        <a href="#">Connection</a>
+        <a href="index.php?action=showPosts">Les articles</a>
         <a href="index.php?action=showFormRegistration">Inscription</a>
+        <a href="index.php?action=showFormConnexion">Connection</a>
     </nav>
 </header>
 

@@ -7,8 +7,8 @@ class RegistrationController {
     private $manager;
     private $error;
     private $success;
-    
     private $role = "membre";
+    
     public function __construct() {
         $this->manager = new RegistrationManager();
     }

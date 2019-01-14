@@ -47,7 +47,5 @@ class RegistrationManager extends Model {
         }
         
     }
-    
-   
-    
+
 }

@@ -125,6 +125,14 @@ h1 {
     margin: auto;
 }
 
+#connexion_wrapper {
+    text-align: center;
+}
+
+#form_connexion table {
+    margin: auto;
+}
+
 td.label {
     text-align: right;
 }

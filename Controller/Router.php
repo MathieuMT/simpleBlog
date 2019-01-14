@@ -3,6 +3,7 @@
 require_once 'Controller/HomeController.php';
 require_once 'Controller/PostController.php';
 require_once 'Controller/RegistrationController.php';
+require_once 'Controller/ConnexionController.php';
 require_once 'View/View.php';
 
 class Router {
@@ -14,6 +15,7 @@ class Router {
         $this->homeCtrl = new HomeController();
         $this->postCtrl = new PostController();
         $this->registrCtrl = new RegistrationController();
+        $this->connexCtrl = new ConnexionController();
     }
     
     // Processes an incoming request:
@@ -27,6 +29,9 @@ class Router {
                         }
                         else
                             throw new Exception("Identifiant de billet non valide");
+                }
+                else if ($_GET['action'] == 'showPosts') {
+                    $this->homeCtrl->home();
                 }
                 else if ($_GET['action'] == 'comment') {
                         $author = $this->getParameter($_POST, 'author');
@@ -44,6 +49,15 @@ class Router {
                     $email = $this->getParameter($_POST, 'email');
                     
                     $this->registrCtrl->newMemberRegistration($nickname, $pass, $checkPass, $email);             
+                }
+                else if ($_GET['action'] == 'showFormConnexion') {
+                    $this->connexCtrl->showFormConnexion();
+                }
+                else if ($_GET['action'] == 'connexion') {
+                    $nicknameEmailConnect = $this->getParameter($_POST, 'nicknameEmailConnect');
+                    $passConnect = $this->getParameter($_POST, 'passConnect');
+                    
+                    $this->connexCtrl->loginMember($nicknameEmailConnect,$passConnect);
                 }
                 else
                         throw new Exception("Action non valide");

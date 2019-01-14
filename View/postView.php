@@ -1,4 +1,4 @@
-<?php $this->title = "Jean Forteroche - " . $post['title']; ?>
+ <?php $this->title = "Jean Forteroche - " . $post['title']; ?>
 
 <article>
     <header>
