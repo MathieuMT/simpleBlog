@@ -35,6 +35,17 @@ class PostManager extends Model {
         return $articles;
     }
     
+    // Return extract of all articles with their number of comments per article:
+    public function getExtractPostsWithNumberOfComments() {
+        
+        $sql = 'SELECT p.id, p.title, left(p.content,150) AS extract, p.author, DATE_FORMAT(p.creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, COUNT(c.post_id) AS nb_comments FROM posts p LEFT JOIN comments c ON p.id = c.post_id GROUP BY p.id, c.post_id';
+        
+        $nbCommentByExtractPost = $this->executeQuery($sql);
+        $extractArticles = $nbCommentByExtractPost->fetchAll();
+        
+        return $extractArticles;
+    }
+    
 }
 
 

@@ -1,6 +1,8 @@
 <?php
 
 require_once 'Controller/HomeController.php';
+
+require_once 'Controller/ListPostsController.php';
 require_once 'Controller/PostController.php';
 require_once 'Controller/RegistrationController.php';
 require_once 'Controller/ConnexionController.php';
@@ -13,6 +15,8 @@ class Router {
     
     public function __construct() {
         $this->homeCtrl = new HomeController();
+        
+        $this->listPostsCtrl = new ListPostsController();
         $this->postCtrl = new PostController();
         $this->registrCtrl = new RegistrationController();
         $this->connexCtrl = new ConnexionController();
@@ -31,7 +35,7 @@ class Router {
                             throw new Exception("Identifiant de billet non valide");
                 }
                 else if ($_GET['action'] == 'showPosts') {
-                    $this->homeCtrl->home();
+                    $this->listPostsCtrl->listPosts();
                 }
                 else if ($_GET['action'] == 'comment') {
                         $author = $this->getParameter($_POST, 'author');

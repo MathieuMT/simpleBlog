@@ -30,6 +30,18 @@ h1 {
     margin-bottom: 0px;
 }
 
+a#link_totalPost {
+    text-decoration: none;
+}
+
+input#btn_totalPost {
+    background-color: blue;
+    color: #bfbfbf;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+}
+
 .nbComs{
     text-align: right;
 }
