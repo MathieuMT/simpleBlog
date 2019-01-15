@@ -45,7 +45,6 @@ class PostManager extends Model {
         
         return $extractArticles;
     }
-    
 }
 
 
