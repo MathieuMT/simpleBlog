@@ -13,7 +13,7 @@ class HomeController {
     
     // Show list of all blog posts
     public function home() {
-        $posts = $this->post->getPostsWithNumberOfComments();
+        $posts = $this->post->getLastPostWithNumberOfComments();
         $view = new View('homeView');
         $view->generate(array('posts' => $posts));
     }

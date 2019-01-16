@@ -4,6 +4,14 @@ require_once 'Model/Model.php';
 
 class PostManager extends Model {
     
+    // Returns the last post:
+    public function getLastPostWithNumberOfComments() {
+        $sql = 'SELECT p.id, p.title, left(p.content,350) AS extract, p.author, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, COUNT(c.post_id) AS nb_comments FROM posts p LEFT JOIN comments c ON p.id = c.post_id GROUP BY p.id, c.post_id ORDER BY creation_date DESC LIMIT 1';
+    
+        $posts = $this->executeQuery($sql);
+        return $posts;
+    }
+    
     
     // Returns the list of blog posts by decreasing creation date:
     public function getPosts() {

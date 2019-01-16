@@ -146,6 +146,10 @@ input#btn_totalPost {
     margin: auto;
 }
 
+.link_register {
+    text-decoration: none;
+}
+
 td.label {
     text-align: right;
 }
@@ -156,6 +160,48 @@ td.label {
 
 .error {
     color: red;
+}
+
+.btn_commentPost {
+    background-color: black;
+    color: #bfbfbf;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.popup {
+    display: none;
+    background-color: red;
+    text-align: center;
+    margin: auto;
+    width: 42%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 2%;
+}
+
+a.link_popup {
+    text-decoration: none;
+    font-size: 15px;
+    color: black;
+}
+
+button.btn_popup {
+    margin: auto;
+    align-items: center;
+    justify-content:center;
+    border-radius: 5px;
+    border: none;
+    flex-shrink: 2;
+    flex-wrap: wrap;
+    background-color: #bfbfbf;
+}
+
+.btn_closePopup {
+    cursor:pointer;
 }
 
 @media screen and (min-width: 768px){

@@ -49,12 +49,18 @@ class ConnexionController {
                     $_SESSION['email'] = $connectedMember['email'];
 
                     $this->success['connexion'] = 'Vous êtes bien connecté !';
+                    
+                    header('Location:index.php?action=home');
                 
                 
                 }else {
                     //Le return la aussi
                     $this->error['connexion'] = 'Votre Pseudo ou email ou mot de passe est invalide !';
                 }
+            }else {
+                $this->error['connexion'] = 'Vous n\'êtes pas inscrit !<br /><button class="btn_register"><a class="link_register" href="index.php?action=showFormRegistration">S\'inscrire ici</a>';
+                
+                header('Location:index.php?action=showFormRegistration');
             } 
         } else {
             $this->error['field'] = 'Tous les champs doivent être remplis!';

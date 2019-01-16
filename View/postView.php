@@ -1,6 +1,10 @@
- <?php $this->title = "Jean Forteroche - " . $post['title']; ?>
+<?php $this->title = "Jean Forteroche - " . $post['title']; ?>
 
-<article>
+<?php
+
+if (isset($_SESSION['nickname'])) {
+?>
+    <article>
     <header>
         <h1 class="postTitle"><?= $post['title'] ?></h1>
         <time><?= $post['creation_date_fr'] ?></time>
@@ -23,4 +27,32 @@
     <input type="hidden" name="id" value="<?= $post['id'] ?>" />
     <input type="submit" value="Commenter" />
 </form>
+<?php
+}else {
+?>
+
+    <article>
+    <header>
+        <h1 class="postTitle"><?= $post['title'] ?></h1>
+        <time><?= $post['creation_date_fr'] ?></time>
+    </header>
+    <p><?= $post['content'] ?></p>
+    <p><?= $post['author'] ?></p>
+</article>
+<hr />
+
+
+<button class="btn_commentPost" >Commenter l'article: <?= '\'' . $post['title'] . '\'' ?> -></button><br />
+    
+<div class="popup">
+    <p><span class=btn_closePopup>&times;</span></p>
+    <p class="txt_popup">Pour commenter l'article <?= '\'' . $post['title'] . '\'' ?> vous devez vous connecter !</p>
+    <button class="btn_popup"><a class="link_popup" href="index.php?action=showFormConnexion">Se Connection</a></button>
+</div>
+
+
+<?php
+}
+?>
+
 
