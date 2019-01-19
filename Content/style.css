@@ -49,6 +49,7 @@ input#btn_totalPost {
 
 #buffer_block {
     height: 0;
+    margin-bottom: 2%;
 }
 
 #global {
@@ -174,10 +175,10 @@ td.label {
 
 .popup {
     display: none;
-    background-color: red;
+    background-color: rgba(245,7,23,0.3);
     text-align: center;
     margin: auto;
-    width: 42%;
+    width: 92%;
     flex-direction: column;
     flex-wrap: wrap;
     padding: 2%;
@@ -189,7 +190,7 @@ a.link_popup {
     color: black;
 }
 
-button.btn_popup {
+input.btn_popup {
     margin: auto;
     align-items: center;
     justify-content:center;
@@ -198,10 +199,13 @@ button.btn_popup {
     flex-shrink: 2;
     flex-wrap: wrap;
     background-color: #bfbfbf;
+    cursor:pointer;
+    font-weight: bold;
 }
 
 .btn_closePopup {
     cursor:pointer;
+    font-weight: bold;
 }
 
 @media screen and (min-width: 768px){
@@ -235,5 +239,16 @@ button.btn_popup {
     
     .nav a {
         border-top: none;
+    }
+    
+    .popup {
+    display: none;
+    background-color: rgba(245,7,23,0.3);
+    text-align: center;
+    margin: auto;
+    width: 42%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 2%;
     }
 }

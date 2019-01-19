@@ -60,15 +60,41 @@ class Router {
                     $this->registrCtrl->newMemberRegistration($nickname, $pass, $checkPass, $email);             
                 }
                 else if ($_GET['action'] == 'showFormConnexion') {
-                    $this->connexCtrl->showFormConnexion();
+                        $this->connexCtrl->showFormConnexion();  
                 }
                 else if ($_GET['action'] == 'connexion') {
+                    
                     $nicknameEmailConnect = $this->getParameter($_POST, 'nicknameEmailConnect');
+                    
                     $passConnect = $this->getParameter($_POST, 'passConnect');
                     
-                    $this->connexCtrl->loginMember($nicknameEmailConnect,$passConnect);
-                }
-                else if ($_GET['action'] == 'logout') {
+                    if(isset($_POST['idConnect'])){
+                        
+                        $idConnect = $this->getParameter($_POST, 'idConnect');
+                        
+                        $this->connexCtrl->loginMember($nicknameEmailConnect,$passConnect, $idConnect);
+                        
+                    }else{
+                        
+                        $this->connexCtrl->loginMember($nicknameEmailConnect,$passConnect);
+                    }
+                    
+                }else if ($_GET['action'] == 'showFormConnexionFromPost') {
+                    
+                    $postIdRef = intval($this->getParameter($_GET, 'id'));
+                    
+                    $this->connexCtrl->showFormConnexionFromPost($postIdRef);
+                    
+                }else if ($_GET['action'] == 'connexionFromPost') {
+                    
+                    $nicknameEmailConnect = $this->getParameter($_POST, 'nicknameEmailConnect');
+                    $passConnect = $this->getParameter($_POST, 'passConnect');
+                    $idConnect = intval($this->getParameter($_POST, 'idConnect'));
+                    
+                    $this->connexCtrl->loginMemberFromPost($nicknameEmailConnect,$passConnect, $idConnect);
+                    
+                }else if ($_GET['action'] == 'logout') {
+                    
                     $this->logoutCtrl->logoutMember();
                 }
                 else

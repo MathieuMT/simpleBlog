@@ -27,6 +27,10 @@
                 </td>
             </tr>
             
+            <?php if(isset($_GET['id'])):  ?>
+                <input type="hidden" name="idConnect" id="idConnect" value="<?= $_GET['id'] ?>" />
+            <?php endif ?>
+            
             <tr class="label">
                 <td colspan="2">
                     <br />

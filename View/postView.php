@@ -1,3 +1,4 @@
+<!-- post view -->
 <?php $this->title = "Jean Forteroche - " . $post['title']; ?>
 
 <?php
@@ -47,7 +48,7 @@ if (isset($_SESSION['nickname'])) {
 <div class="popup">
     <p><span class=btn_closePopup>&times;</span></p>
     <p class="txt_popup">Pour commenter l'article <?= '\'' . $post['title'] . '\'' ?> vous devez vous connecter !</p>
-    <button class="btn_popup"><a class="link_popup" href="index.php?action=showFormConnexion">Se Connection</a></button>
+    <a class="link_popup" href="index.php?action=showFormConnexionFromPost&amp;id=<?= $post['id'] ?>" ><form method="get" action="index.php?action=showFormConnexionFromPost&amp;id="<?= $post['id'] ?>><input class="btn_popup" type="button" value="Se Connecter ici !" /><input type="hidden" name="id" value="<?= $post['id'] ?>" /></form></a>
 </div>
 
 
