@@ -14,6 +14,7 @@ if (isset($_SESSION['nickname'])) {
     <nav class="nav">
         <a href="index.php?action=home">Accueil</a>
         <a href="index.php?action=showPosts">Les articles</a>
+        <a href="index.php?action=showProfile&amp;id=<?= $_SESSION['id'] ?>">Profil</a>
         <a href="index.php?action=showFormRegistration">Inscription</a>
         <a href="index.php?action=logout">Déconnexion</a>
     </nav>

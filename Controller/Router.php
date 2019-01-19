@@ -4,6 +4,7 @@ require_once 'Controller/HomeController.php';
 
 require_once 'Controller/ListPostsController.php';
 require_once 'Controller/PostController.php';
+require_once 'Controller/ProfileController.php';
 require_once 'Controller/RegistrationController.php';
 require_once 'Controller/ConnexionController.php';
 require_once 'Controller/LogoutController.php';
@@ -13,12 +14,18 @@ class Router {
     
     private $homeCtrl;
     private $postCtrl;
+    private $listPostsCtrl;
+    private $profileCtrl;
+    private $registrCtrl;
+    private $connexCtrl;
+    private $logoutCtrl;
     
     public function __construct() {
         $this->homeCtrl = new HomeController();
         
         $this->listPostsCtrl = new ListPostsController();
         $this->postCtrl = new PostController();
+        $this->profileCtrl = new ProfileController();
         $this->registrCtrl = new RegistrationController();
         $this->connexCtrl = new ConnexionController();
         $this->logoutCtrl = new LogoutController();
@@ -47,6 +54,12 @@ class Router {
                         $content = $this->getParameter($_POST, 'content');
                         $postId = $this->getParameter($_POST, 'id');
                         $this->postCtrl->comment($author, $content, $postId);
+                }
+                else if ($_GET['action'] == 'showProfile') {
+                    $profileId = intval($this->getParameter($_GET, 'id'));
+                    if ($profileId > 0) {
+                       $this->profileCtrl->showProfile($profileId); 
+                    }
                 }
                 else if ($_GET['action'] == 'showFormRegistration') {
                     $this->registrCtrl->showFormRegistration();
