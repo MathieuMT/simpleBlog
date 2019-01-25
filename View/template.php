@@ -14,7 +14,7 @@
         <div id="buffer_block"></div>
         <div id="global">
             <header>
-                <a href="index.php"><h1 id="blogTitle">Jean Forteroche</h1></a>
+                <a href="index.php"><h1 id="blogTitle">Blog de <br />Jean Forteroche</h1></a>
                 
             </header>
             <div id="content">
@@ -27,5 +27,6 @@
         
         <script src="Content/btn_nav.js"></script>
         <script src="Content/btn_commentPost.js"></script>
+        <script src="Content/btn_updateAvatar.js"></script>
     </body>
 </html>

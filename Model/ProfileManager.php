@@ -15,4 +15,25 @@ class ProfileManager extends Model {
             throw new Exception("Aucun billet ne correspond à l'identifiant '$profileId'");
     }
     
+    public function addNewAvatar($avatar, $profileId) {
+
+        $sql = 'UPDATE members SET avatar = :avatar WHERE id = :id ';
+        $newAvatar = $this->executeQuery($sql, array('avatar' => $avatar, 'id' => $profileId));
+        
+        if ($newAvatar) {
+            return true;
+        }else {
+            return false;
+        }
+        
+    }
+    
+    public function updateAvatar() {
+        
+    }
+    
+    public function deleteAvatar() {
+        
+    }
+    
 }

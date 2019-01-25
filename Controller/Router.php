@@ -60,6 +60,17 @@ class Router {
                     if ($profileId > 0) {
                        $this->profileCtrl->showProfile($profileId); 
                     }
+                }else if ($_GET['action'] == 'profileAvatar') {
+                    
+                    $profileId = intval($this->getParameter($_GET, 'id'));
+                    if ($profileId > 0) {
+                        
+                        $avatar = $this->getParameter($_FILES, 'avatar_field');
+                        
+                        $avatar_tmp = $_FILES['avatar_field']['tmp_name'];
+                        
+                        $this->profileCtrl->newAvatar($profileId, $avatar, $avatar_tmp);   
+                    }
                 }
                 else if ($_GET['action'] == 'showFormRegistration') {
                     $this->registrCtrl->showFormRegistration();
