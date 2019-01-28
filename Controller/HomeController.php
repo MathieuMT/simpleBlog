@@ -7,6 +7,7 @@ require_once 'View/View.php';
 class HomeController {
     private $post;
     
+    
     public function __construct(){
         $this->post = new PostManager();
     }

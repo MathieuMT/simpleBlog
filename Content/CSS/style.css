@@ -40,7 +40,7 @@ input#btn_totalPost {
     border-radius: 5px;
     border: none;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 6.5px;
 }
 
 .nbComs{
@@ -49,7 +49,7 @@ input#btn_totalPost {
 
 #buffer_block {
     height: 0;
-    margin-bottom: 2%;
+    margin-bottom: 4%;
 }
 
 #global {
@@ -66,6 +66,7 @@ input#btn_totalPost {
 }
 
 #blogTitle, #blogFooter {
+    font-size: 20px;
     text-align: center;
 }
 
@@ -152,7 +153,16 @@ input#btn_totalPost {
 }
 
 td.label {
+    font-size: 10px;
     text-align: right;
+}
+
+input.input_field {
+   width: 100px;
+}
+
+input::placeholder {
+    font-size: 7px;
 }
 
 .success {
@@ -203,12 +213,71 @@ input.btn_popup {
     font-weight: bold;
 }
 
-.btn_closePopup {
-    cursor:pointer;
+#avatar, #nickname, #email, #pass, #signature {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.avatar_profile {
+    display:block;
+    width: 150px;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+    margin-bottom: 4%;
+}
+
+.input_avatar {
+    padding: 1%;
+    font-size: 8px;
+    font-weight: bold;
+    width: 125px;
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+}
+
+.btn_update_avatar_profile, .btn_update_nickname_profile, .btn_update_email_profile, .btn_update_pass_profile, .btn_update_electronic_signature_profile, .btn_delete_electronic_signature_profile {
+    align-items: center;
+    justify-content:center;
+    max-width: 100%;
+    margin: auto;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    padding: 5px;
+    cursor: pointer;
+    margin-bottom: 4%;
+}
+
+.btn_closePopup, .btn_closePopupAvatar, .btn_closePopupNickname, .btn_closePopupEmail, .btn_closePopupPass, .btn_closePopupSignatureElectronic, .btn_closePopupDeletetSignatureElectronic  {
+    cursor: pointer;
     font-weight: bold;
 }
 
+.popup_update_avatar_profile, .popup_update_nickname_profile, .popup_update_email_profile, .popup_update_pass_profile, .popup_update_electronic_signature_profile, .popup_delete_electronic_signature_profile {
+    display: none;
+    background-color: rgba(191,191,191,0.3);
+    text-align: center;
+    margin: auto;
+    width: 92%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 2%;
+    margin-bottom: 1%;
+}
+
+.popup_delete_avatar_profil {
+    margin: auto;
+}
+
 @media screen and (min-width: 768px){
+    
+    #blogTitle, #blogFooter {
+    font-size: 35px;
+    text-align: center;
+    }
     
     #buffer_block {
         height: 9%;
@@ -242,13 +311,49 @@ input.btn_popup {
     }
     
     .popup {
-    display: none;
-    background-color: rgba(245,7,23,0.3);
-    text-align: center;
-    margin: auto;
-    width: 42%;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding: 2%;
+        display: none;
+        background-color: rgba(245,7,23,0.3);
+        text-align: center;
+        margin: auto;
+        width: 42%;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding: 2%;
     }
+    
+    input#btn_totalPost {
+        background-color: blue;
+        color: #bfbfbf;
+        border-radius: 5px;
+        border: none;
+        font-weight: bold;
+        font-size: 12px;
+    }
+    
+    .avatar_profile {
+        display:block;
+        width: 300px;
+        max-width: 100%;
+        height: auto;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    
+    td.label {
+        font-size: 15px;
+    }
+    
+    input.input_field {
+        width: 200px;
+    }
+    
+    input::placeholder {
+        font-size: 12px;
+    }
+    
+    .input_avatar {
+        width: 200px;
+        font-size: 12px;
+    }
+
 }

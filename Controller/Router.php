@@ -60,6 +60,73 @@ class Router {
                     if ($profileId > 0) {
                        $this->profileCtrl->showProfile($profileId); 
                     }
+                }else if ($_GET['action'] == 'profileAvatar') {
+                    
+                    $profileId = intval($this->getParameter($_GET, 'id'));
+                    if ($profileId > 0) {
+                        
+                        $avatar = $this->getParameter($_FILES, 'avatar_field');
+                        
+                        $this->profileCtrl->newAvatar($profileId, $avatar);
+                    }
+                }else if ($_GET['action'] == 'profileDeleteAvatar') {
+                    
+                    $profileId = intval($this->getParameter($_GET, 'id'));
+                    if ($profileId > 0) {
+                        
+                        $this->profileCtrl->noAvatar($profileId);
+                    }
+                }else if ($_GET['action'] == 'profileNickname') {
+                    
+                    $newNickname = $this->getParameter($_POST, 'newNickname');
+                    
+                    $profileId = intval($this->getParameter($_GET, 'id'));
+                    
+                    if ($profileId > 0) {
+                        
+                        $this->profileCtrl->editNickname($profileId, $newNickname);
+                    }
+                }else if ($_GET['action'] == 'profileEmail') {
+                    
+                    $newEmail = $this->getParameter($_POST, 'newemail');
+                    
+                    $profileId = intval($this->getParameter($_GET, 'id'));
+                    
+                    if ($profileId > 0) {
+                        
+                        $this->profileCtrl->editEmail($profileId, $newEmail);
+                    }                    
+                }else if ($_GET['action'] == 'profilePass') {
+                    
+                    $newPass1 = $this->getParameter($_POST, 'newPass1');
+                    $newPass2 = $this->getParameter($_POST, 'newPass2');
+                    
+                    $profileId = intval($this->getParameter($_GET, 'id'));
+                    
+                    if ($profileId > 0) {
+                        
+                        $this->profileCtrl->editPass($profileId, $newPass1, $newPass2);
+                    }  
+                    
+                }else if ($_GET['action'] == 'profileSignatureElectronic') {
+                    
+                    $newElectronicSignature = $this->getParameter($_POST, 'newElectronicSignature');
+                    
+                    $profileId = intval($this->getParameter($_GET, 'id'));
+                    
+                    if ($profileId > 0) {
+                        
+                        $this->profileCtrl->editSignatureElectric($profileId, $newElectronicSignature);
+                    }  
+                    
+                }else if ($_GET['action'] == 'profileSignatureElectronicDelete') {
+                    
+                    $profileId = intval($this->getParameter($_GET, 'id'));
+                    
+                    if ($profileId > 0) {
+                        
+                        $this->profileCtrl->noSignature($profileId);
+                    }  
                 }
                 else if ($_GET['action'] == 'showFormRegistration') {
                     $this->registrCtrl->showFormRegistration();

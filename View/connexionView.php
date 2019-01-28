@@ -14,7 +14,7 @@
                     <label for="nicknameEmailConnect">Pseudo ou Email : </label>
                 </td>
                 <td>
-                    <input type="text" placeholder="Votre pseudo ou votre email" id="nicknameEmailConnect" name="nicknameEmailConnect" size="30" autofocus />
+                    <input class="input_field" type="text" placeholder="Votre pseudo ou votre email" id="nicknameEmailConnect" name="nicknameEmailConnect" size="30" autofocus />
                 </td>
             </tr>
             
@@ -23,18 +23,18 @@
                     <label for="passConnect">Mot de passe : </label>
                 </td>
                 <td>
-                    <input type="password" placeholder="Mot de passe" id="passConnect" name="passConnect" size="30" />
+                    <input class="input_field" type="password" placeholder="Mot de passe" id="passConnect" name="passConnect" size="30" />
                 </td>
             </tr>
             
             <?php if(isset($_GET['id'])):  ?>
-                <input type="hidden" name="idConnect" id="idConnect" value="<?= $_GET['id'] ?>" />
+                <input class="input_field" type="hidden" name="idConnect" id="idConnect" value="<?= $_GET['id'] ?>" />
             <?php endif ?>
             
             <tr class="label">
                 <td colspan="2">
                     <br />
-                    <input type="submit" value="Se connecter" name="btn_connexion" />
+                    <input class="input_field" type="submit" value="Se connecter" name="btn_connexion" />
                 </td>
                 <td></td>
             </tr>
