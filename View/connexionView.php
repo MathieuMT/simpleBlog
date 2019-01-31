@@ -31,6 +31,19 @@
                 <input class="input_field" type="hidden" name="idConnect" id="idConnect" value="<?= $_GET['id'] ?>" />
             <?php endif ?>
             
+            <tr>
+                      
+                <td>
+                    <label for="captcha">Vous n'êtes pas un robot :</label>
+                </td>
+                       
+                <td>
+                    <img src="Content/Captcha/captcha.php" alt="captcha"  />
+                    <input type="text" name="captcha" id='captcha'/>
+                </td>
+                       
+            </tr>
+            
             <tr class="label">
                 <td colspan="2">
                     <br />
