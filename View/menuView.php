@@ -1,8 +1,8 @@
 <!-- Menu view -->
 <?php
-if (isset($_SESSION['nickname'])) {
+if (isset($_SESSION['nickname']) && $_SESSION['role'] == 'administrateur') {
 ?>
-    <header class="header">
+<header class="header">
     <div class="header-top">
         <div class="logo"><h3><?= $title ?></h3></div>
         <div class="btn-menu">
@@ -11,18 +11,26 @@ if (isset($_SESSION['nickname'])) {
             </button>
         </div>
     </div>
-    <nav class="nav">
-        <a href="index.php?action=home">Accueil</a>
-        <a href="index.php?action=showPosts">Les articles</a>
-        <a href="index.php?action=showProfile&amp;id=<?= $_SESSION['id'] ?>">Profil</a>
-        <a href="index.php?action=showFormRegistration">Inscription</a>
-        <a href="index.php?action=logout">Déconnexion</a>
+    <nav class="navigation">
+        <ul class="nav">
+            <li class="nav-item"><a href="index.php?action=home">Accueil</a></li>
+            <li class="nav-item"><a href="index.php?action=showPosts">Articles</a></li>
+            <li class="nav-item"><a href="index.php?action=showProfile&amp;id=<?= $_SESSION['id'] ?>">Profil</a></li>
+            <li class="nav-item has-children"><a href="index.php?action=showAdmin&amp;id=<?= $_SESSION['id'] ?>">Administration</a>
+                <ul class="nav-sub">
+                    <li class="nav-item-sub"><a href="index.php?action=showAdmin&amp;id=<?= $_SESSION['id'] ?>">Gestion des articles</a></li>
+                    <li class="nav-item-sub"><a href="index.php?action=showAdmin&amp;id=<?= $_SESSION['id'] ?>">Gestion des utilisateurs</a></li>
+                </ul>
+            </li>
+            <li class="nav-item"><a href="index.php?action=showFormRegistration">Inscription</a></li>
+            <li class="nav-item"><a href="index.php?action=logout">Déconnexion</a></li>
+        </ul>
     </nav>
 </header>
 <?php
-} else {
+}else if (isset($_SESSION['nickname']) && $_SESSION['role'] == 'membre') {
 ?>
-    <header class="header">
+<header class="header">
     <div class="header-top">
         <div class="logo"><h3><?= $title ?></h3></div>
         <div class="btn-menu">
@@ -31,11 +39,35 @@ if (isset($_SESSION['nickname'])) {
             </button>
         </div>
     </div>
-    <nav class="nav">
-        <a href="index.php?action=home">Accueil</a>
-        <a href="index.php?action=showPosts">Les articles</a>
-        <a href="index.php?action=showFormRegistration">Inscription</a>
-        <a href="index.php?action=showFormConnexion">Connection</a>
+    <nav class="navigation">
+        <ul class="nav">
+            <li class="nav-item"><a href="index.php?action=home">Accueil</a></li>
+            <li class="nav-item"><a href="index.php?action=showPosts">Articles</a></li>
+            <li class="nav-item"><a href="index.php?action=showProfile&amp;id=<?= $_SESSION['id'] ?>">Profil</a></li>
+            <li class="nav-item"><a href="index.php?action=showFormRegistration">Inscription</a></li>
+            <li class="nav-item"><a href="index.php?action=logout">Déconnexion</a></li>
+        </ul>
+    </nav>
+</header>
+<?php    
+}else {
+?>
+<header class="header">
+    <div class="header-top">
+        <div class="logo"><h3><?= $title ?></h3></div>
+        <div class="btn-menu">
+            <button class="btn_nav">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    <nav class="navigation">
+        <ul class="nav">
+            <li class="nav-item"><a href="index.php?action=home">Accueil</a></li>
+            <li class="nav-item"><a href="index.php?action=showPosts">Articles</a></li>
+            <li class="nav-item"><a href="index.php?action=showFormRegistration">Inscription</a></li>
+            <li class="nav-item"><a href="index.php?action=showFormConnexion">Connection</a></li>
+        </ul>
     </nav>
 </header>
 <?php
