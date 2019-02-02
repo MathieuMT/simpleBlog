@@ -105,6 +105,7 @@ input#btn_totalPost {
     background: none;
     border: none;
     outline: none;
+    cursor: pointer;
 }
 
 .btn-menu i {
@@ -112,9 +113,28 @@ input#btn_totalPost {
     color: #bfbfbf;
 }
 
+.navigation {
+    box-sizing: content-box;
+    flex-basis: 60%;
+}
+
 .nav {
     display: none;
     flex-direction: column;
+    margin: 0;
+    padding: 15px;
+}
+
+.navigation li {
+    position: relative;
+    flex: 1 0 auto;
+    list-style-type: none;
+}
+
+.nav-item {
+    border-top: 1px solid black;
+    padding: 12px 12px 12px 12px;
+    text-align: right;
 }
 
 .nav.open {
@@ -127,9 +147,35 @@ input#btn_totalPost {
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
-    padding: 15px 15px 15px 0;
-    border-top: 1px solid black;
+    padding: 7px 3px;
+}
+
+.nav a:hover {
+    background-color: #bfbfbf;
+    color:#2f404f;
+}
+
+.navigation ul ul.nav-sub {
+    display: none;
+    flex-direction: column;
+    position:static;
+    z-index: 100;
+    padding: 0;
+    min-width: 200px;
+}
+
+.navigation ul.nav > .has-children:hover ul.nav-sub {
+    display: flex;
+}
+
+li.nav-item-sub {
+    flex: 1 1 auto;
     text-align: right;
+}
+
+li.nav-item-sub > a {
+    color: white;
+    text-decoration: none;
 }
 
 #registration_wrapper {
@@ -287,6 +333,7 @@ input.btn_popup {
         display: flex;
         width: 100%;
         position: fixed;
+        height: 100px;
     }
     
     .btn-menu {
@@ -303,13 +350,57 @@ input.btn_popup {
         flex-basis: 60%;
         justify-content: flex-end;
         align-items: center;
-        padding-right: 15px;
+        padding-right: 0;
     }
     
-    .nav a {
+    .navigation li {
+        position: relative;
+        flex: 1 0 auto;
+        list-style-type: none;
+    }
+    
+    .nav-item {
         border-top: none;
+        text-align: center;
+        padding: 8px 8px 8px 8px;
     }
     
+    .nav.nav-item > a {
+        border-top: none;
+        padding: 15px 5px;
+    }
+    
+    .navigation ul ul.nav-sub {
+        display: none;
+        position: absolute;
+        z-index: 100;
+        padding: 0;
+        flex-direction: column;
+        min-width: 200px;
+    }
+        
+    li.has-children > a {
+        padding-bottom: 5px;
+    }
+    
+    .navigation ul.nav > .has-children:hover ul.nav-sub {
+        display: flex;        
+    }
+
+    li.nav-item-sub {
+        flex: 1 1 auto;
+        text-align: left;
+        padding-left: 5px;
+    }
+    
+    li.nav-item-sub > a {
+        color: white;
+        text-decoration: none;
+        margin-top: 50px;
+        text-align: center;
+        padding: 0;
+    }
+
     .popup {
         display: none;
         background-color: rgba(245,7,23,0.3);
