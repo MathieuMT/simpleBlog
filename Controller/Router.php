@@ -148,15 +148,17 @@ class Router {
                     
                     $passConnect = $this->getParameter($_POST, 'passConnect');
                     
+                    $captcha = $this->getParameter($_POST, 'captcha');
+                    
                     if(isset($_POST['idConnect'])){
                         
                         $idConnect = $this->getParameter($_POST, 'idConnect');
                         
-                        $this->connexCtrl->loginMember($nicknameEmailConnect,$passConnect, $idConnect);
+                        $this->connexCtrl->loginMember($nicknameEmailConnect,$passConnect, $captcha, $idConnect);
                         
                     }else{
                         
-                        $this->connexCtrl->loginMember($nicknameEmailConnect,$passConnect);
+                        $this->connexCtrl->loginMember($nicknameEmailConnect,$passConnect, $captcha);
                     }
                     
                 }else if ($_GET['action'] == 'showFormConnexionFromPost') {
@@ -170,8 +172,9 @@ class Router {
                     $nicknameEmailConnect = $this->getParameter($_POST, 'nicknameEmailConnect');
                     $passConnect = $this->getParameter($_POST, 'passConnect');
                     $idConnect = intval($this->getParameter($_POST, 'idConnect'));
+                    $captcha = $this->getParameter($_POST, 'captcha');
                     
-                    $this->connexCtrl->loginMemberFromPost($nicknameEmailConnect,$passConnect, $idConnect);
+                    $this->connexCtrl->loginMemberFromPost($nicknameEmailConnect,$passConnect,$captcha,$idConnect);
                     
                 }else if ($_GET['action'] == 'logout') {
                     
