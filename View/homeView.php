@@ -2,7 +2,7 @@
 <?php $this->title = 'Jean Forteroche - ACCUEIL'; ?>
 
 <?php
-if (isset($_SESSION['nickname'])) {
+if (isset($_SESSION['id'])) {
     echo'<p>Bonjour ' . $_SESSION['nickname'] . ' , je vous souhaite la bienvenue sur mon blog !</p>';
     
 } else {
@@ -34,7 +34,8 @@ $extractWithSpace = substr($extract,0,$space);
             </a>
             <time><?= $post['creation_date_fr'] ?></time>
         </header>
-        <p><?= $extractWithSpace ?> ...<a id="link_totalPost" href="<?= "index.php?action=post&amp;id=" . $post['id'] ?>"><input id="btn_totalPost" type="button" value="Lire la suite de l'article: <?= '\''.$post['title'].'\'' ?> ->" /></a> ...</p>
+        <p><?= $extractWithSpace ?> ...</p><p><a id="link_totalPost" href="<?= "index.php?action=post&amp;id=" . $post['id'] ?>"><button id="btn_totalPost">Lire la suite de l'article et le commenter:
+->...</button></a></p> 
             <p><?= $post['author'] ?></p>
             <p class="nbComs"><?= $post['nb_comments'] ?> Commentaire<?php if($post['nb_comments'] > 1) echo 's';?></p>
     </article>
@@ -43,4 +44,4 @@ $extractWithSpace = substr($extract,0,$space);
 
 
 
-         
+ 

@@ -12,3 +12,4 @@ crossDeleteSignature.addEventListener('click', function() {
     btnDeleteSignature.style.display = 'flex';
     popupDeleteSignature.style.display = 'none';
 })
+

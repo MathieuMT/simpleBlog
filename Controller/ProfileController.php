@@ -8,6 +8,7 @@ class ProfileController {
     private $error;
     private $success;
     private $profile;
+    private $roleUser;
     private $avatar;
     private $avatar_tmp;
     private $avatarSize;
@@ -24,8 +25,9 @@ class ProfileController {
     // Show profile detail:
     public function showProfile($profileId) {
         $profile = $this->profile->getProfile($profileId);
+        $roleUser = $this->profile->getRoleUser($profileId);
         $view = new View("profileView");
-        $view->generate(array('profile' => $profile));
+        $view->generate(array('profile' => $profile, 'roleUser' => $roleUser));
     }
     
     public function newAvatar($profileId, $avatar) {
@@ -66,7 +68,9 @@ class ProfileController {
                         
                         $this->profile->addNewAvatar($avatarUrl, $profileId);
                         
-                        $this->success['profileAvatar'] = 'Vous avez bien modifié votre avatar à votre profil';   
+                        $this->success['profileAvatar'] = 'Vous avez bien modifié votre avatar à votre profil'; 
+                        
+                        header('Location: index.php?action=showProfile&id=' . $profileId);
                         
                     }else {
                         
@@ -75,6 +79,8 @@ class ProfileController {
                         $this->profile->addNewAvatar($avatarUrl, $profileId);
                     
                         $this->success['profileAvatar'] = 'Vous avez bien ajouté un avatar à votre profil';
+                        
+                        header('Location: index.php?action=showProfile&id=' . $profileId);
                     }
                     
                     
@@ -93,8 +99,9 @@ class ProfileController {
         
         
         $profile = $this->profile->getProfile($profileId);
+        $roleUser = $this->profile->getRoleUser($profileId);
         $view = new View("profileView");
-        $view->generate(array('profile' => $profile, 'error' => $this->error, 'success' => $this->success));
+        $view->generate(array('profile' => $profile, 'roleUser' => $roleUser, 'error' => $this->error, 'success' => $this->success));
         
     }
     
@@ -102,12 +109,15 @@ class ProfileController {
     public function noAvatar($profileId) {
                    
         $this->profile->deleteAvatar($profileId);
+        
+        header('Location: index.php?action=showProfile&id=' . $profileId);
                     
         // $this->success['profileAvatar'] = 'Vous avez bien supprimé l\'avatar de votre profil';
 
         $profile = $this->profile->getProfile($profileId);
+        $roleUser = $this->profile->getRoleUser($profileId);
         $view = new View("profileView");
-        $view->generate(array('profile' => $profile, 'error' => $this->error, 'success' => $this->success));
+        $view->generate(array('profile' => $profile, 'roleUser' => $roleUser, 'error' => $this->error, 'success' => $this->success));
     }
     
     public function editNickname($profileId, $newNickname) {
@@ -123,11 +133,14 @@ class ProfileController {
             unset($_SESSION['nickname']);
             
             $_SESSION['nickname'] = $newNickname;
+            
+            header('Location: index.php?action=showProfile&id=' . $profileId);
                 
         }
         
+       $roleUser = $this->profile->getRoleUser($profileId);
         $view = new View("profileView");
-        $view->generate(array('profile' => $profile, 'error' => $this->error, 'success' => $this->success));
+        $view->generate(array('profile' => $profile, 'roleUser' => $roleUser, 'error' => $this->error, 'success' => $this->success));
         
     }
     
@@ -140,16 +153,19 @@ class ProfileController {
         if (isset($newEmail) and !empty($newEmail) and $newEmail != $profile['email']) {
             
             
-            if ($this->profile->updateEmail($profileId, $newEmail) != 0) {
+            if ($newEmail != NULL) {
                 $this->profile->updateEmail($profileId, $newEmail);
+
             }else {
             
                 $this->error['profileEmail'] = 'L\'adresse e-mail suivante: "' . $newEmail . '" est déjà prise !';
             }
+
         } 
-        
+
+        $roleUser = $this->profile->getRoleUser($profileId);
         $view = new View("profileView");
-        $view->generate(array('profile' => $profile, 'error' => $this->error, 'success' => $this->success));
+        $view->generate(array('profile' => $profile, 'roleUser' => $roleUser, 'error' => $this->error, 'success' => $this->success));
 
     }
     
@@ -168,13 +184,18 @@ class ProfileController {
                 $newPass2_hache = password_hash($newPass2, PASSWORD_DEFAULT);
 
                 $this->profile->updatePass($profileId, $newPass1_hache);
+                
+                header('Location: index.php?action=showProfile&id=' . $profileId);
 
             } else {
                 $this->error['profilePass'] =  'Vos deux mots de passes ne correspondent pas !';
+                
+                header('Location: index.php?action=showProfile&id=' . $profileId);
             }
 
+            $roleUser = $this->profile->getRoleUser($profileId);
             $view = new View("profileView");
-            $view->generate(array('profile' => $profile, 'error' => $this->error, 'success' => $this->success));
+            $view->generate(array('profile' => $profile, 'roleUser' => $roleUser, 'error' => $this->error, 'success' => $this->success));
 
             }
     }
@@ -187,22 +208,27 @@ class ProfileController {
         if (isset($newElectronicSignature) and !empty($newElectronicSignature)) {
             
             $newElectronicSignature = nl2br(htmlspecialchars($newElectronicSignature));
+            //$newElectronicSignature;
             
             $this->profile->updateElectronicSignature($profileId, $newElectronicSignature);
+            
+            header('Location: index.php?action=showProfile&id=' . $profileId);
         }
         
+        $roleUser = $this->profile->getRoleUser($profileId);
         $view = new View("profileView");
-        $view->generate(array('profile' => $profile, 'error' => $this->error, 'success' => $this->success));    
+        $view->generate(array('profile' => $profile, 'roleUser' => $roleUser, 'error' => $this->error, 'success' => $this->success)); 
     }
     
     public function noSignature($profileId) {
         
         $this->profile->deleteSignature($profileId);
         
+        header('Location: index.php?action=showProfile&id=' . $profileId);
+        
         $profile = $this->profile->getProfile($profileId);
+        $roleUser = $this->profile->getRoleUser($profileId);
         $view = new View("profileView");
-        $view->generate(array('profile' => $profile, 'error' => $this->error, 'success' => $this->success));
+        $view->generate(array('profile' => $profile, 'roleUser' => $roleUser, 'error' => $this->error, 'success' => $this->success));
     }
-    
-    
 }

@@ -1,11 +1,11 @@
 <!-- profile View -->
 
-<?php $this->title = $profile['nickname'] .' - PROFIL'; ?>
+<?php $this->title = $_SESSION['nickname'] .' - PROFIL'; ?>
 
 
 <?php
 
-if (isset($_SESSION['nickname'])) {
+if (isset($_SESSION['id'])) {
 ?>
 
 
@@ -13,7 +13,7 @@ if (isset($_SESSION['nickname'])) {
   
     <h3>Profil de : "<?= $profile['nickname'] ?>"</h3><br />
     
-    <p><?= $profile['nickname'] ?>, vous êtes inscrit en tant que <u><?= $profile['role'] ?></u>  depuis le <i><?= $profile['registration_date_fr'] ?></i> sur le blog Jean FORTEROCHE.</p>
+    <p><?= $profile['nickname'] ?>, vous êtes inscrit en tant que <u><?= $roleUser['role_name'] ?></u>  depuis le <i><?= $profile['registration_date_fr'] ?></i> sur le blog Jean FORTEROCHE.</p>
     
     <br />
     <br />
@@ -166,7 +166,7 @@ if (isset($_SESSION['nickname'])) {
                       
                 <td colspan="2">
                 <br />
-                    <input type="submit" value="Mettre à jour mon pseudo !" name="btn_submit_update_nickname_profile" />
+                    <input type="submit" value="Mettre à jour" id="btn_submit_update_nickname_profile" name="btn_submit_update_nickname_profile" />
                 </td>
                        
                 <td></td>
@@ -202,7 +202,7 @@ if (isset($_SESSION['nickname'])) {
                       
                 <td colspan="2">
                 <br />
-                    <input type="submit" value="Mettre à jour mon e-mail !" name="btn_submit_update_email_profile" />
+                    <input type="submit" value="Mettre à jour" id="btn_submit_update_email_profile" name="btn_submit_update_email_profile" />
                 </td>
                        
                 <td></td>
@@ -247,7 +247,7 @@ if (isset($_SESSION['nickname'])) {
                       
                 <td colspan="2">
                 <br />
-                    <input type="submit" value="Mettre à jour mon mot de passe !" name="btn_submit_update_pass_profile" />
+                    <input type="submit" value="Mettre à jour" id="btn_submit_update_pass_profile" name="btn_submit_update_pass_profile" />
                 </td>
                        
                 <td></td>
@@ -285,7 +285,7 @@ if (isset($_SESSION['nickname'])) {
 
                     <td colspan="2">
                     <br />
-                        <input type="submit" value="Mettre à jour ma signature !" name="btn_submit_update_electronic_signature_profile" />
+                        <input type="submit" value="Mettre à jour" id="btn_submit_update_electronic_signature_profile" name="btn_submit_update_electronic_signature_profile" />
                     </td>
 
                     <td></td>
@@ -332,7 +332,7 @@ if (isset($_SESSION['nickname'])) {
 
             </form>
         </div>    
-        
+        </div>
     <?php
     } 
     ?> 
@@ -346,3 +346,21 @@ if (isset($_SESSION['nickname'])) {
 <?php
 }
 ?>
+
+
+
+
+
+
+<script src="Content/JS/btn_updateAvatar.js"></script>
+<script src="Content/JS/btn_updateNickname.js"></script>
+<script src="Content/JS/btn_updateEmail.js"></script>
+<script src="Content/JS/btn_updatePass.js"></script>
+<script src="Content/JS/btn_updateSignature.js"></script>
+<script src="Content/JS/btn_deleteSignature.js"></script>
+<script src="Content/JS/btn_addNewPost.js"></script>
+
+
+
+
+

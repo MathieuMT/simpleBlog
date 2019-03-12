@@ -5,6 +5,10 @@ require_once 'Controller/HomeController.php';
 require_once 'Controller/ListPostsController.php';
 require_once 'Controller/PostController.php';
 require_once 'Controller/ProfileController.php';
+require_once 'Controller/AdminControllerPost.php';
+require_once 'Controller/AdminUpdatePostController.php';
+require_once 'Controller/AdminControllerCommentsFlagged.php';
+require_once 'Controller/AdminControllerUser.php';
 require_once 'Controller/RegistrationController.php';
 require_once 'Controller/ConnexionController.php';
 require_once 'Controller/LogoutController.php';
@@ -19,6 +23,9 @@ class Router {
     private $registrCtrl;
     private $connexCtrl;
     private $logoutCtrl;
+    private $adminCtrlPost;
+    private $adminCtrlCommentsFlagged;
+    private $adminCtrlUser;
     
     public function __construct() {
         $this->homeCtrl = new HomeController();
@@ -26,6 +33,10 @@ class Router {
         $this->listPostsCtrl = new ListPostsController();
         $this->postCtrl = new PostController();
         $this->profileCtrl = new ProfileController();
+        $this->adminCtrlPost = new AdminControllerPost();
+        $this->adminCtrlCommentsFlagged = new AdminControllerCommentsFlagged();
+        $this->adminUpdatePostCtrl = new AdminUpdatePostController();
+        $this->adminCtrlUser = new AdminControllerUser();
         $this->registrCtrl = new RegistrationController();
         $this->connexCtrl = new ConnexionController();
         $this->logoutCtrl = new LogoutController();
@@ -54,6 +65,35 @@ class Router {
                         $content = $this->getParameter($_POST, 'content');
                         $postId = $this->getParameter($_POST, 'id');
                         $this->postCtrl->comment($author, $content, $postId);
+                }else if ($_GET['action'] == 'showAdminCommentsFlagged') {
+                    
+                    $commentId = intval($this->getParameter($_GET, 'id'));
+                    
+                    $this->adminCtrlCommentsFlagged->flaggedComments($commentId);
+                        
+                }else if ($_GET['action'] == 'flagComment') {
+                    
+                    $postId = intval($this->getParameter($_GET, 'id'));
+                    
+                    $commentId = intval($this->getParameter($_GET, 'commentId'));
+                    
+                    if ($postId > 0) {
+                        
+                        $this->adminCtrlCommentsFlagged->flagComment($commentId, $postId);
+                    } 
+                    
+                }else if ($_GET['action'] == 'deleteFlaggedComment') {
+                    
+                    $commentId = intval($this->getParameter($_GET, 'commentId'));
+                    
+                    $this->adminCtrlCommentsFlagged->deleteComment($commentId);
+                    
+                }else if ($_GET['action'] == 'approveFlaggedComment') {
+                    
+                    $commentId = intval($this->getParameter($_GET, 'commentId'));
+                    
+                    $this->adminCtrlCommentsFlagged->approveComment($commentId);
+
                 }
                 else if ($_GET['action'] == 'showProfile') {
                     $profileId = intval($this->getParameter($_GET, 'id'));
@@ -127,6 +167,71 @@ class Router {
                         
                         $this->profileCtrl->noSignature($profileId);
                     }  
+                }else if ($_GET['action'] == 'showAdminPost') {
+                    
+                    $this->adminCtrlPost->listPosts();
+                    
+                }else if ($_GET['action'] == 'formAddNewPost') {
+                    
+                    $author = $this->getParameter($_POST, 'author');
+                    $title = $this->getParameter($_POST, 'title');
+                    $content = $this->getParameter($_POST, 'content');
+                    
+                    $this->adminCtrlPost->newPost($author, $title, $content);
+
+                    
+                }else if ($_GET['action'] == 'updatePost') {
+                    
+                    $postId = intval($this->getParameter($_GET, 'id'));
+                        if ($postId > 0) {
+                            $this->adminUpdatePostCtrl->post($postId);
+                        }
+                        else
+                            throw new Exception("Identifiant de billet non valide");
+                    
+                }else if ($_GET['action'] == 'formUpdatePost') {
+                    
+                    $author = $this->getParameter($_POST, 'author');
+                    $title = $this->getParameter($_POST, 'title');
+                    $content = $this->getParameter($_POST, 'content');
+                    
+                    $postId = intval($this->getParameter($_POST, 'postId'));
+                        if ($postId > 0) {
+                            $this->adminUpdatePostCtrl->updateEditPost($title, $content, $author, $postId);
+                        }
+                        else
+                            throw new Exception("Identifiant de billet non valide");
+
+                    
+                }else if ($_GET['action'] == 'deletePost') {
+                    
+                    
+                        
+                        $this->adminCtrlPost->removePost();
+                        
+                   
+                    
+                }else if ($_GET['action'] == 'roleUsers') {
+                    
+                    //$userId = intval($this->getParameter($_GET, 'id'));
+
+                    //if ($userId > 0) {
+                        
+                            $this->adminCtrlUser->showRoles();
+
+                    //}
+                }else if ($_GET['action'] == 'updateRoleUsers') {
+                    
+                    //$idUser = intval($this->getParameter($_GET, 'id'));
+                    
+                    //if ($idUser) {
+                        $this->adminCtrlUser->changeRoleUser();
+                    //}
+                    
+                }else if ($_GET['action'] == 'deleteUser') {
+                    
+        
+                     $this->adminCtrlUser->removeUser();
                 }
                 else if ($_GET['action'] == 'showFormRegistration') {
                     $this->registrCtrl->showFormRegistration();
@@ -148,15 +253,17 @@ class Router {
                     
                     $passConnect = $this->getParameter($_POST, 'passConnect');
                     
+                    $captcha = $this->getParameter($_POST, 'captcha');
+                    
                     if(isset($_POST['idConnect'])){
                         
                         $idConnect = $this->getParameter($_POST, 'idConnect');
                         
-                        $this->connexCtrl->loginMember($nicknameEmailConnect,$passConnect, $idConnect);
+                        $this->connexCtrl->loginMember($nicknameEmailConnect,$passConnect, $captcha, $idConnect);
                         
                     }else{
                         
-                        $this->connexCtrl->loginMember($nicknameEmailConnect,$passConnect);
+                        $this->connexCtrl->loginMember($nicknameEmailConnect,$passConnect, $captcha);
                     }
                     
                 }else if ($_GET['action'] == 'showFormConnexionFromPost') {
@@ -170,8 +277,9 @@ class Router {
                     $nicknameEmailConnect = $this->getParameter($_POST, 'nicknameEmailConnect');
                     $passConnect = $this->getParameter($_POST, 'passConnect');
                     $idConnect = intval($this->getParameter($_POST, 'idConnect'));
+                    $captcha = $this->getParameter($_POST, 'captcha');
                     
-                    $this->connexCtrl->loginMemberFromPost($nicknameEmailConnect,$passConnect, $idConnect);
+                    $this->connexCtrl->loginMemberFromPost($nicknameEmailConnect,$passConnect,$captcha,$idConnect);
                     
                 }else if ($_GET['action'] == 'logout') {
                     

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:8889
--- Généré le :  Sam 08 Décembre 2018 à 19:46
+-- Généré le :  Mar 12 Mars 2019 à 19:14
 -- Version du serveur :  5.6.35
 -- Version de PHP :  7.1.1
 
@@ -31,6 +31,7 @@ CREATE TABLE `comments` (
   `post_id` int(11) NOT NULL,
   `author` varchar(255) NOT NULL,
   `comment` text NOT NULL,
+  `flagged` tinyint(1) DEFAULT NULL,
   `comment_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -38,14 +39,38 @@ CREATE TABLE `comments` (
 -- Contenu de la table `comments`
 --
 
-INSERT INTO `comments` (`id`, `post_id`, `author`, `comment`, `comment_date`) VALUES
-(1, 1, 'A. Nonyme', 'Bravo pour ce 1er billet !', '2018-11-06 14:41:00'),
-(2, 1, 'A. Nonyme', 'Bonne continuation !', '2018-11-08 13:28:01'),
-(8, 1, 'J.Forteroche', 'Merci! enetendu :)\r\n', '2018-11-15 13:14:04'),
-(9, 1, 'A. Nonyme', 'COOL !', '2018-11-19 15:58:14'),
-(11, 1, 'J.Forteroche', 'Yes !', '2018-11-19 16:11:02'),
-(12, 1, 'A. Nonyme', 'OUI tiens bon!', '2018-11-19 16:17:32'),
-(13, 1, 'J.Forteroche', 'Je ne lâche rien ! ', '2018-11-19 16:20:05');
+INSERT INTO `comments` (`id`, `post_id`, `author`, `comment`, `flagged`, `comment_date`) VALUES
+(221, 70, 'Mathieu', 'Yes !', 0, '2019-02-16 00:46:51'),
+(222, 71, 'Baptiste', 'TIP TOP !!!', 0, '2019-02-16 00:47:17'),
+(223, 71, 'Mathieu', 'TROP TOP ', 0, '2019-02-16 00:47:39'),
+(224, 69, 'Lola', 'WOUHA !!!', 0, '2019-02-16 00:54:26'),
+(225, 70, 'Baptiste', 'Top !', 0, '2019-02-18 17:02:35'),
+(226, 70, 'Mathieu', 'OUI !', 0, '2019-02-18 17:05:42'),
+(227, 70, 'Baptiste', 'ok !', 0, '2019-02-18 18:04:38'),
+(228, 70, 'Mathieu', 'YES BAT !', 0, '2019-02-18 18:08:17'),
+(229, 70, 'Mathieu', 'TIP TOP !!!', 0, '2019-02-18 18:20:43'),
+(230, 70, 'Baptiste', 'OUI !!!', 0, '2019-02-18 18:22:03'),
+(231, 70, 'Mathieu', 'Et Oui !', 0, '2019-02-18 18:25:19'),
+(232, 70, 'Baptiste', 'Genial !', 0, '2019-02-18 18:27:32'),
+(233, 70, 'Mathieu', 'Presque !', 0, '2019-02-18 18:29:13'),
+(234, 70, 'Baptiste', 'Bientôt', 0, '2019-02-18 18:29:49'),
+(235, 70, 'Mathieu', 'Demain ?..', 0, '2019-02-18 19:25:31'),
+(236, 70, 'Baptiste', 'Non Maintenant ...', 0, '2019-02-18 19:26:30'),
+(237, 70, 'Mathieu', 'T', 0, '2019-02-18 19:28:56'),
+(238, 70, 'Baptiste', 'MOUAI !', 0, '2019-02-18 19:35:00'),
+(239, 70, 'Mathieu', 'NON', 0, '2019-02-18 19:36:33'),
+(240, 70, 'Baptiste', 'Blablabla !!!', 0, '2019-02-18 20:03:46'),
+(241, 70, 'Mathieu', 'J\'essai encore ...', 0, '2019-02-18 20:10:32'),
+(242, 70, 'Baptiste', 'Essaies essaie ...!', 0, '2019-02-18 20:12:08'),
+(243, 70, 'Mathieu', 'j\'essaie !', 0, '2019-02-18 20:39:40'),
+(244, 70, 'Baptiste', '\r\n\r\n\r\n    \r\n        \r\n        \r\n        \r\n        \r\n        \r\n         \r\n\r\n\r\n        \r\n        \r\n    \r\n    \r\n       \r\n        \r\n\r\n\r\n\r\n        \r\n        \r\n        \r\n        \r\n        \r\n        \r\n        \r\n        \r\n        \r\n        \r\nAlors !?\r\n       \r\n        \r\n        \r\n        \r\n        \r\n        \r\n        \r\n        \r\n        \r\n        \r\n        \r\n        \r\n        \r\n        \r\n    ', 0, '2019-02-18 20:51:09'),
+(245, 70, 'Mathieu', 'J\'essai encore et encore ...', 0, '2019-02-18 20:52:37'),
+(246, 70, 'Baptiste', 'J\'attend....', 0, '2019-02-18 20:54:23'),
+(247, 70, 'Mathieu', 'ok !', 0, '2019-02-18 20:55:30'),
+(248, 70, 'Baptiste', 'bon alors ?...', 0, '2019-02-18 20:56:17'),
+(249, 70, 'Mathieu', 'No comment !\r\n', 0, '2019-02-23 19:36:15'),
+(250, 70, 'Baptiste', 'Super cool !', 0, '2019-03-07 14:09:21'),
+(254, 71, 'Toutou', 'OK !!!', 0, '2019-03-12 19:07:17');
 
 -- --------------------------------------------------------
 
@@ -55,7 +80,7 @@ INSERT INTO `comments` (`id`, `post_id`, `author`, `comment`, `comment_date`) VA
 
 CREATE TABLE `members` (
   `id` int(11) NOT NULL,
-  `role` varchar(255) NOT NULL,
+  `role` int(255) NOT NULL,
   `nickname` varchar(255) NOT NULL,
   `pass` text NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -69,48 +94,22 @@ CREATE TABLE `members` (
 --
 
 INSERT INTO `members` (`id`, `role`, `nickname`, `pass`, `email`, `registration_date`, `avatar`, `signature`) VALUES
-(1, '0', 'TruckMush', '0000', 'tm@free.fr', '2018-12-02 00:00:00', '', ''),
-(2, '0', 'Féfé', '5555', 'fefe@free.fr', '2018-12-02 00:00:00', '', ''),
-(3, '0', 'Féfé', '5555', 'fefe@free.fr', '2018-12-02 00:00:00', '', ''),
-(4, '0', 'DD', '$2y$10$cud6GeIgFXvxzPQyT6UcjOQ/ATF47OZH5PovyF4eK1yx8aNkQGRJ6', 'dd@orange.fr', '2018-12-02 00:00:00', '', ''),
-(5, '0', 'Lola', '$2y$10$3S7ApdF5qOzXABbA0EogNuLZ8Ec40t2ur/RSzgqOf8PQshngQYqLK', 'lola@gmail.fr', '2018-12-02 00:00:00', '', ''),
-(6, '0', 'Lola', '$2y$10$1hX7/VtNc3t61mwP.ejEKurE6Z35whPOAX842i9Zlr979mdCFoHHq', 'lola@gmail.fr', '2018-12-02 00:00:00', '', ''),
-(7, '0', 'Lola', '$2y$10$wBERoyJueCijcsXHhtwhZ.zgfM/RErQIxAMnqYCi2OBrGhY51Lg9G', 'lola@gmail.fr', '2018-12-02 00:00:00', '', ''),
-(8, '0', 'Arthur', '$2y$10$lOqv3PvNva/qqAlAwwMV2OC5Dj9T2RCxYShkl9EEyx6PS2dsAMJ0C', 'arthur@free.fr', '2018-12-02 00:00:00', '', ''),
-(9, '0', 'Pierre', '$2y$10$ChgnweZPClg3GGgYKbPSheOKhRmc.o2kHI.2VR77Ht.a/y.wDtwAS', 'pierre@free.fr', '2018-12-02 00:00:00', '', ''),
-(10, '0', 'Jacques', '$2y$10$5l0fs0kon92An0I8972HVutaMhD9ndJBszJDNcfT2.g2s9BzvwF2i', 'jacques@free.fr', '2018-12-02 00:00:00', '', ''),
-(11, '0', 'Jacques', '$2y$10$Cvn22nXu.16FxxznnVt9TedE.TnxYw/mfe6i9EIrbTD5GnotDH31K', 'jacques@free.fr', '2018-12-02 00:00:00', '', ''),
-(12, '0', 'Paul', '$2y$10$wOc05liiMdCZhAnjA9qGXO1Cvied.WnCIs6Ywnomz4oYPSJilsIWS', 'paul@free.fr', '2018-12-02 00:00:00', '', ''),
-(13, '0', 'Paul', '$2y$10$GD4MWRZ1tYl9TkXW0qrADuRuSKHJ.5YOx4.KbZjR3FoqfysCNf29u', 'paul@free.fr', '2018-12-02 00:00:00', '', ''),
-(14, 'membre', 'Nono', '$2y$10$y.JazS5BkQwqhugVkTTbq.e8hCyOG2JsGU4BZbV8WPhqX3z2bA9da', 'nono@free.fr', '2018-12-02 00:00:00', '', ''),
-(15, 'membre', 'Nono', '$2y$10$2MKXPjiZGTrYL3UBWMdby.ggmRIqcAfLV7C5dp4UBqsoj9j4rcT2G', 'nono@free.fr', '2018-12-02 00:00:00', '', ''),
-(16, 'membre', 'Nono', '$2y$10$JyKnQNGnR70Ji3DaTwOB8uG38bCft/cH1Btvd9TsbOrqEDNIiO7Sy', 'nono@free.fr', '2018-12-02 00:00:00', '', ''),
-(17, 'membre', 'Nono', '$2y$10$ZWP6Ke.3KhgeJT/7pNn11.uPhUY071mc3sLuHLrqzwTG3qN.1lPPu', 'nono@free.fr', '2018-12-02 00:00:00', '', ''),
-(18, 'membre', 'Nono', '$2y$10$WopfmbtWGg025nvzwNlnnuzmzZaW3qYz3qBH/fLtFPuQiVQPpRvfy', 'nono@free.fr', '2018-12-02 00:00:00', '', ''),
-(19, 'membre', 'Nana', '$2y$10$wSS6gd0AMEFFu9Z0XlY7DuR98qLpqU7cmW1zH3/fdPSgTcBMgmfI2', 'nana@free.fr', '2018-12-02 00:00:00', '', ''),
-(20, 'membre', 'Nana', '$2y$10$AQ8z1kSKlJCFDnMS5kivsuO41mq/.eyexv/PkC301ErllZsAZjmNu', 'nana@free.fr', '2018-12-02 00:00:00', '', ''),
-(21, 'membre', 'Nana', '$2y$10$fRRlQQyv/Vlpt2lT1x9ykuJ43oJTS9BNvGPChzaz3lfQofFkIdrQ2', 'nana@free.fr', '2018-12-02 00:00:00', '', ''),
-(22, 'membre', 'Nana', '$2y$10$LcVo9zSzyZ2zzKLydRSCzOdfW4LBBAgYQX5ykJfzHPL5ruT1b5bO6', 'nana@free.fr', '2018-12-02 00:00:00', '', ''),
-(23, 'membre', 'Nina', '$2y$10$BsUejvzTDoWEH3elGWVydOVjVjCvWUTCiNECpWdyh.I.0/2TJhcwK', 'nina@free.fr', '2018-12-03 00:00:00', '', ''),
-(24, 'membre', 'Momo', '$2y$10$hLK3hqRFIRbWdaE5.9qzyOWEkkyHVehgHadzvVN23xTF1amejxbCa', 'momo@free.fr', '2018-12-03 00:00:00', '', ''),
-(25, 'membre', 'Mami', '$2y$10$7CvLMfbdDLW8IZ2qH1AHu.IV9.NjQCVdsAfXGfVRxuRmXo1.hB4pK', 'mami@free.fr', '2018-12-03 00:00:00', '', ''),
-(26, 'membre', 'Zaze', '$2y$10$FurFaA4GWXInXGI35nI/mOQ/RLa/rn.MhdcRKdn9HceSLJ13pfAb2', 'zaze@free.fr', '2018-12-03 00:00:00', '', ''),
-(27, 'membre', 'Titi', '$2y$10$16wfBK7A4hZ9jeHoi/7CTudwd3oEzRMxFPsx2F8PQKO9is9JOYSKC', 'titi@free.fr', '2018-12-03 00:00:00', '', ''),
-(28, 'membre', 'Titi', '$2y$10$eqqJtFJjkPxweeExLPksle7y092LDg0OnXieblTk9NsebWdGRUWBO', 'titi@free.fr', '2018-12-03 00:00:00', '', ''),
-(29, 'membre', 'Toto', '$2y$10$t0vQS2ryeysvkVjwnYIG3.9a4T32p6MgtyNRPJurQ5Kzh5WgJ6g2.', 'toto@free.fr', '2018-12-03 00:00:00', '', ''),
-(30, 'membre', 'Lolo', '$2y$10$kXCU/v6s8iEs8jTVv0pUj.uhQx5p9e9zFd5gGzrfzhkpLwhHtoQk6', 'lolo@free.fr', '2018-12-08 00:00:00', '', ''),
-(31, 'membre', 'Lolo', '$2y$10$7KeB/AqqvEiGHxLDfsL/3OzFaor1CqrZXA2KHf2EE2ah1awELb2YK', 'lolo@free.fr', '2018-12-08 00:00:00', '', ''),
-(32, 'membre', 'Lolo', '$2y$10$TFoSUVJUfDVO1mmsSIk/ruG4aU53tsrxV1FyeStwObZZqGOGIr3W6', 'lolo@free.fr', '2018-12-08 00:00:00', '', ''),
-(33, 'membre', 'Mama', '$2y$10$Oyz0n3WF6GT9RNWI9kPCGuh0anmC/SM7M0P14XQC2HU0Sqh0JqBFq', 'mama@free.fr', '2018-12-08 00:00:00', '', ''),
-(34, 'membre', 'Mama', '$2y$10$Oiqwhbrgw5EJEjfhHTM4heYE/B2xGUm2qIDdxWoFFDMzlKB/rh7ga', 'mama@free.fr', '2018-12-08 00:00:00', '', ''),
-(35, 'membre', 'Mama', '$2y$10$tWxebd4we.lHTQQwElYuKuSPiQLcEi./finDa08ro7Novll8IZmTu', 'mama@free.fr', '2018-12-08 00:00:00', NULL, NULL),
-(36, 'membre', 'Mama', '$2y$10$ea/KpGWI5tFNOYb.DKUhdOQyiD7LKqiMwQue1t2rN7RODF7AwjI3W', 'mama@free.fr', '2018-12-08 00:00:00', NULL, NULL),
-(37, 'membre', 'Mama', '$2y$10$EZa8fBgjwsXbHey/HgrQM.qRnxQ.7uyCyE77FV265cqxr0kz06olK', 'mama@free.fr', '2018-12-08 00:00:00', NULL, NULL),
-(38, 'membre', 'Mama', '$2y$10$saknJcYvvYJ4GdNyz75kD.HwllhSMT8V3UBHYi5qfsoCPZm5kBtXa', 'mama@free.fr', '2018-12-08 00:00:00', NULL, NULL),
-(39, 'membre', 'Mama', '$2y$10$DmR94YBH7VwAnNHIQXaRluwVpLULjtwKFTq7GSHYDRapokbEWIbq.', 'mama@free.fr', '2018-12-08 00:00:00', NULL, NULL),
-(40, 'membre', 'Bibi', '$2y$10$XdMxFjrQv4hiVopvRWs4UeMce586OPApAvqmwUsjvjvB/cpe5Wu1S', 'bibi@free.fr', '2018-12-08 00:00:00', NULL, NULL),
-(41, 'membre', 'Bibi', '$2y$10$xz7eMKAp.eAbRGWuet6kBuw8C99PYnDafKBfwkK6ocrA98DV1b8li', 'bibi@free.fr', '2018-12-08 00:00:00', NULL, NULL),
-(42, 'membre', 'Bobo', '$2y$10$c0wMEEdtQZY063wksuO1qe7dEDM66mhQvqm/VL8r6bJt3w2DIV5yq', 'bobo@free.fr', '2018-12-08 00:00:00', NULL, NULL);
+(28, 1, 'Titi', '$2y$10$eqqJtFJjkPxweeExLPksle7y092LDg0OnXieblTk9NsebWdGRUWBO', 'titi@free.fr', '2018-12-03 00:00:00', '', ''),
+(29, 1, 'Toto', '$2y$10$t0vQS2ryeysvkVjwnYIG3.9a4T32p6MgtyNRPJurQ5Kzh5WgJ6g2.', 'toto@free.fr', '2018-12-03 00:00:00', '', ''),
+(32, 1, 'Lolo', '$2y$10$TFoSUVJUfDVO1mmsSIk/ruG4aU53tsrxV1FyeStwObZZqGOGIr3W6', 'lolo@free.fr', '2018-12-08 00:00:00', '', ''),
+(39, 1, 'Mama', '$2y$10$DmR94YBH7VwAnNHIQXaRluwVpLULjtwKFTq7GSHYDRapokbEWIbq.', 'mama@free.fr', '2018-12-08 00:00:00', NULL, NULL),
+(41, 1, 'Bibi', '$2y$10$xz7eMKAp.eAbRGWuet6kBuw8C99PYnDafKBfwkK6ocrA98DV1b8li', 'bibi@free.fr', '2018-12-08 00:00:00', NULL, NULL),
+(42, 1, 'Bobo', '$2y$10$c0wMEEdtQZY063wksuO1qe7dEDM66mhQvqm/VL8r6bJt3w2DIV5yq', 'bobo@free.fr', '2018-12-08 00:00:00', NULL, NULL),
+(43, 1, 'Tata', '$2y$10$GfSpuRSaWrZuqAaHRVJ9z.6UsRN0yD/mtLccalxtmDg1IebNirT2q', 'tata@free.fr', '2018-12-10 00:00:00', NULL, NULL),
+(47, 1, 'Louloutte', '$2y$10$bKRNz4X0gaIu1NhVw40GRO2qfOOaCnZQV2hrZFxLWobxka66Yi4nG', 'louloutte@free.fr', '2018-12-12 00:00:00', NULL, NULL),
+(48, 1, 'Riri', '$2y$10$C9bXqkBH074PYQ0AwSlwpeIV8bRuaVSlfNXndWSM7h9eD6/eaE1MC', 'riri@free.fr', '2018-12-12 00:00:00', NULL, NULL),
+(49, 1, 'Alfa', '$2y$10$BE62AI269Xz5cxRvAvA5hezAR7Z2P0XGowVajMV.JF.93ZoBN2R2i', 'alfa@free.fr', '2018-12-12 00:00:00', NULL, NULL),
+(53, 1, 'Fifi', '$2y$10$i4YeGTuEgeY.crMGs5tpQOEDrBnFTgtRzHSgNViqotfrR55tSLN7W', 'fifi@free.fr', '2018-12-12 00:00:00', NULL, NULL),
+(54, 1, 'lila', '$2y$10$rSDJE0sGT1/dzLzyRXmVYe.76NcavnMWU4TR0uxlzSozq2hyAKeDa', 'lila@free.fr', '2018-12-12 00:00:00', NULL, NULL),
+(55, 1, 'Lali', '$2y$10$l/8HdjQOcG8KSZhhb4yYFOnng9ZlJK2o.NbIHhVfNuaNtRqXDltzW', 'lali@free.fr', '2018-12-12 00:00:00', NULL, NULL),
+(56, 1, 'Lilo', '$2y$10$mIGUCOqi4Sy2sewX.3kzNOYM6eCOi3Rj6h2xtB7FKZJrwkRnlLZ2y', 'lilo@free.fr', '2018-12-12 00:00:00', NULL, NULL),
+(57, 2, 'Toutou', '$2y$10$fqQkS9MOeOEprTsXlyBdvOgSbNPlclHjFf0qsl24LHJXMtg4/BwDq', 'toutou@free.fr', '2018-12-12 02:00:00', NULL, NULL),
+(58, 1, 'roro', '$2y$10$V.Hy1/BtUMxhd6M6OgSN5.LiMNKBzjXDykUZkp5B9DxzUGrNhsfyi', 'roro@free.fr', '2018-12-20 00:00:00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -131,8 +130,32 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `title`, `content`, `author`, `creation_date`) VALUES
-(1, 'Premier billet', 'Bonjour à vous! Ceci est le premier billet sur mon blog .', 'J.Forteroche', '2018-11-06 14:29:00'),
-(2, 'Au travail', 'Il faut enrichir ce blog dès maintenant.', 'J.Forteroche', '0000-00-00 00:00:00');
+(53, 'DEVENIR WEB DEV', '\r\n\r\nQuam ob rem cave Catoni anteponas ne istum quidem ipsum, quem Apollo, ut ais, sapientissimum iudicavit; huius enim facta, illius dicta laudantur. De me autem, ut iam cum utroque vestrum loquar, sic habetote.\r\n\r\nIllud tamen clausos vehementer angebat quod captis navigiis, quae frumenta vehebant per flumen, Isauri quidem alimentorum copiis adfluebant, ipsi vero solitarum rerum cibos iam consumendo inediae propinquantis aerumnas exitialis horrebant.\r\n\r\nQuam ob rem vita quidem talis fuit vel fortuna vel gloria, ut nihil posset accedere, moriendi autem sensum celeritas abstulit; quo de genere mortis difficile dictu est; quid homines suspicentur, videtis; hoc vere tamen licet dicere, P. Scipioni ex multis diebus, quos in vita celeberrimos laetissimosque viderit, illum diem clarissimum fuisse, cum senatu dimisso domum reductus ad vesperum est a patribus conscriptis, populo Romano, sociis et Latinis, pridie quam excessit e vita, ut ex tam alto dignitatis gradu ad superos videatur deos potius quam ad inferos pervenisse.\r\n', 'J.Forteroche', '2019-02-12 21:03:37'),
+(58, 'P4 !...', '\r\n<b>Principium</b>au unde latius se funditabat, emersit ex negotio tali. Chilo ex vicario et coniux eius Maxima nomine, questi apud Olybrium ea tempestate urbi praefectum, vitamque suam venenis petitam adseverantes inpetrarunt ut hi, quos suspectati sunt, ilico rapti conpingerentur in vincula, organarius Sericus et Asbolius palaestrita et aruspex Campensis.\r\n\r\nProinde concepta rabie saeviore, quam desperatio incendebat et fames, amplificatis viribus ardore incohibili in excidium urbium matris Seleuciae efferebantur, quam comes tuebatur Castricius tresque legiones bellicis sudoribus induratae.\r\n\r\nEt prima post Osdroenam quam, ut dictum est, ab hac descriptione discrevimus, Commagena, nunc Euphratensis, clementer adsurgit, Hierapoli, vetere Nino et Samosata civitatibus amplis inlustris.\r\n', 'J.Forteroche', '2019-02-12 21:15:11'),
+(59, 'Bientôt le P5 !', '\r\n\r\nInter haec Orfitus praefecti potestate regebat urbem aeternam ultra modum delatae dignitatis sese efferens insolenter, vir quidem prudens et forensium negotiorum oppido gnarus, sed splendore liberalium doctrinarum minus quam nobilem decuerat institutus, quo administrante seditiones sunt concitatae graves ob inopiam vini: huius avidis usibus vulgus intentum ad motus asperos excitatur et crebros.\r\n\r\nQuapropter a natura mihi videtur potius quam ab indigentia orta amicitia, applicatione magis animi cum quodam sensu amandi quam cogitatione quantum illa res utilitatis esset habitura. Quod quidem quale sit, etiam in bestiis quibusdam animadverti potest, quae ex se natos ita amant ad quoddam tempus et ab eis ita amantur ut facile earum sensus appareat. Quod in homine multo est evidentius, primum ex ea caritate quae est inter natos et parentes, quae dirimi nisi detestabili scelere non potest; deinde cum similis sensus exstitit amoris, si aliquem nacti sumus cuius cum moribus et natura congruamus, quod in eo quasi lumen aliquod probitatis et virtutis perspicere videamur.\r\n\r\nAt nunc si ad aliquem bene nummatum tumentemque ideo honestus advena salutatum introieris, primitus tamquam exoptatus suscipieris et interrogatus multa coactusque mentiri, miraberis numquam antea visus summatem virum tenuem te sic enixius observantem, ut paeniteat ob haec bona tamquam praecipua non vidisse ante decennium Romam.\r\n', 'J.Forteroche', '2019-02-12 21:14:15'),
+(61, 'TinyMCE', '<div id=\"TheTexte\" class=\"Texte\" lang=\"zxx\">\r\n<h1 style=\"text-align: justify;\"><em>Per hoc minui studium <strong>suum existimans Paulus, ut</strong> erat in conplicandis negotiis artifex dirus</em>, <strong>unde ei Catenae inditum est cognomentum,</strong> vicarium ipsum eos quibus praeerat adhuc defensantem ad sortem periculorum communium traxit. et instabat ut eum quoque cum tribunis et aliis pluribus ad comitatum imperatoris vinctum perduceret: quo percitus ille exitio urgente abrupto ferro eundem adoritur Paulum. et quia languente dextera, letaliter ferire non potuit, iam districtum mucronem in proprium latus inpegit. hocque deformi genere mortis excessit e vita iustissimus rector ausus miserabiles casus levare multorum.</h1>\r\n<p>Auxerunt haec vulgi sordidioris audaciam, quo<span style=\"text-decoration: underline;\">d cum ingravesceret penuria commeatuum, famis et furoris inpulsu Eubuli cuiusdam inter suos clari domum ambitiosam</span> ignibus subditis inflammavit rectoremque ut sibi iudicio imperiali addictum calcibus incessens et pugnis conculcans seminec<span style=\"background-color: #f1c40f;\">em laniatu miserando discerpsi</span>t. p<sub>ost cuius lacrimo</sub>sum int<sup>eritum in un</sup>ius exitio quisque imaginem periculi sui considerans documento recenti similia formidabat.</p>\r\n<p style=\"text-align: center;\">Soleo <span style=\"color: #18a085;\">saepe ante oculos ponere, idqu</span>e libenter crebris usurpare sermonibus, omnis nostrorum imperatorum, omnis exterarum gentium potentissimorumque populorum, omnis clarissimorum regum res gestas, cum tuis nec contentionum magnitudine nec numero proeliorum nec varietate regionum nec celeritate conficiendi nec dissimilitudine bellorum posse conferri; nec vero disiunctissimas terras citius passibus cuiusquam potuisse peragrari, quam tuis non dicam cursibus, sed victoriis lustratae sunt.</p>\r\n</div>', 'J.Forteroche', '2019-02-13 21:26:20'),
+(69, 'Image', '<p><img src=\"http://cdn-uploads.gameblog.fr/images/actu/full/81376_gb_news.jpg?ver=1550074645\" alt=\"\" width=\"670\" height=\"377\" /></p>', 'J.Forteroche', '2019-02-14 11:15:15'),
+(70, 'Video', '<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p dir=\"ltr\" style=\"padding-left: 80px;\"><iframe src=\"//www.youtube.com/embed/h81Cyg1d_Zk\" width=\"560\" height=\"314\" allowfullscreen=\"allowfullscreen\"></iframe></p>\r\n<p><em><strong>ut erat in conplicandis negotiis artifex dirus, unde ei Catenae inditum est cognomentum, vicarium ipsum eos quibus praeerat adhuc defensantem ad sortem periculorum communium traxit.</strong></em></p>\r\n<p><span style=\"color: #3598db;\">et instabat ut eum quoque cum tribunis et aliis pluribus ad comitatum imperatoris vinctum perduceret: quo percitus ille exitio urgente abrupto ferro eundem adoritur Paulum. et quia languente dextera, <span style=\"color: #9b59b6;\">letaliter ferire non potuit, iam districtum mucronem in proprium latus inpegit. hocque deformi genere mortis excessit <span style=\"color: #e67e23; background-color: #f1c40f;\">e vita iustissimus rector ausus miserabiles casus levare multorum.</span></span></span></p>', 'J.Forteroche', '2019-03-10 14:27:56'),
+(71, 'Test 3', '<h2>Per hoc minui studium suum existimans Paulus, ut erat in conplicandis negotiis artifex dirus, unde ei Catenae inditum est cognomentum, vicarium ipsum eos quibus praeerat adhuc defensantem ad sortem periculorum communium traxit. et instabat ut eum quoque cum tribunis et aliis pluribus ad comitatum imperatoris vinctum perduceret: quo percitus ille exitio urgente abrupto ferro eundem adoritur Paulum. et quia languente dextera, letaliter ferire non potuit, iam districtum mucronem in proprium latus inpegit. hocque deformi genere mortis excessit e vita iustissimus rector ausus miserabiles casus levare multorum.</h2>', 'J.Forteroche', '2019-02-14 14:22:18');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `roles`
+--
+
+CREATE TABLE `roles` (
+  `role_id` int(11) NOT NULL,
+  `role_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `roles`
+--
+
+INSERT INTO `roles` (`role_id`, `role_name`) VALUES
+(1, 'membre'),
+(2, 'administrateur');
 
 --
 -- Index pour les tables exportées
@@ -142,7 +165,8 @@ INSERT INTO `posts` (`id`, `title`, `content`, `author`, `creation_date`) VALUES
 -- Index pour la table `comments`
 --
 ALTER TABLE `comments`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `comment_post` (`post_id`);
 
 --
 -- Index pour la table `members`
@@ -157,6 +181,12 @@ ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`role_id`);
+
+--
 -- AUTO_INCREMENT pour les tables exportées
 --
 
@@ -164,17 +194,32 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 --
 -- AUTO_INCREMENT pour la table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 --
 -- AUTO_INCREMENT pour la table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+--
+-- AUTO_INCREMENT pour la table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comment_post` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -7,14 +7,14 @@ class ConnexionManager extends Model  {
     
         if($isEmail) {
             // Good Email in db:
-            $sql = 'SELECT * FROM members WHERE email = :email';
+            $sql = 'SELECT id, role, nickname, pass, email, DATE_FORMAT(registration_date, \'%d/%m/%Y à %Hh%imin%ss\') AS registration_date_fr, avatar, signature FROM members WHERE email = :email';
 
             $result = $this->executeQuery($sql, array('email' => $nicknameEmailConnect));
 
             return $result->fetch();
         }else {
             // Good Nickname in db:
-            $sql = 'SELECT * FROM members WHERE nickname = :nickname';
+            $sql = 'SELECT id, role, nickname, pass, email, DATE_FORMAT(registration_date, \'%d/%m/%Y à %Hh%imin%ss\') AS registration_date_fr, avatar, signature FROM members WHERE nickname = :nickname';
 
             $result = $this->executeQuery($sql, array('nickname'=>$nicknameEmailConnect));
 

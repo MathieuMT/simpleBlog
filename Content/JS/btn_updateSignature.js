@@ -12,3 +12,4 @@ crossUpdateSignature.addEventListener('click', function() {
     btnUpdateSignature.style.display = 'flex';
     popupUpdateSignature.style.display = 'none';
 })
+
