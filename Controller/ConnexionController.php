@@ -1,5 +1,5 @@
 <?php
-
+//require_once 'Content/Captcha/captcha.php';
 require_once 'Model/ConnexionManager.php';
 require_once 'View/View.php';
 
@@ -9,6 +9,7 @@ class ConnexionController {
     private $error;
     private $success;
     private $idConnect;
+    //private $captcha;
     
     
     public function __construct() {
@@ -63,16 +64,23 @@ class ConnexionController {
                                 $_SESSION['id'] = $connectedMember['id'];
                                 $_SESSION['role'] = $connectedMember['role'];
                                 $_SESSION['nickname'] = $connectedMember['nickname'];
+
                                 $_SESSION['email'] = $connectedMember['email'];
                                  
                                 
                                 
+
+                                $_SESSION['email'] = $connectedMember['email']; 
+                                 
+
                                  
                                 
                                 $this->success['connexion'] = 'Vous êtes bien connecté !';
                                 
                                 header('Location: index.php?action=home');
+
                                     
+
                                  
                             }else{
                                  
@@ -82,8 +90,10 @@ class ConnexionController {
                                 $_SESSION['nickname'] = $connectedMember['nickname'];
                                 $_SESSION['email'] = $connectedMember['email']; 
                                  
+
                                 
                                  
+
                                 $this->success['connexion'] = 'Vous êtes bien connecté !';
                                  
                                 header('Location: index.php?action=post&id='.$idConnect);
@@ -162,6 +172,7 @@ class ConnexionController {
                             $_SESSION['role'] = $connectedMember['role'];
                             $_SESSION['nickname'] = $connectedMember['nickname'];
                             $_SESSION['email'] = $connectedMember['email'];
+
                             
                             
                             
@@ -170,6 +181,13 @@ class ConnexionController {
                             header('Location: index.php?action=post&id='.$idConnect);
                             
                             
+
+                        
+                            
+                            $this->success['connexion'] = 'Vous êtes bien connecté !';
+
+                            header('Location: index.php?action=post&id='.$idConnect);
+
                         }else {
                             $this->error['connexion'] = 'Captcha invalide !';
                         }

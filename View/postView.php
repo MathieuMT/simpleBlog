@@ -51,11 +51,11 @@ if (isset($_SESSION['id'])) {
 <hr />
 
 
-<button class="btn_commentPost" >Commenter l'article: <?= '\'' . $post['title'] . '\'' ?> -></button><br />
+<button class="btn_commentPost" >Commenter le chapitre: <?= '\'' . $post['title'] . '\'' ?> -></button><br />
     
 <div class="popup">
     <p><span class=btn_closePopup>&times;</span></p>
-    <p class="txt_popup">Pour commenter l'article <?= '\'' . $post['title'] . '\'' ?> vous devez vous connecter !</p>
+    <p class="txt_popup">Pour commenter le chapitre <?= '\'' . $post['title'] . '\'' ?> vous devez vous connecter !</p>
     <a class="link_popup" href="index.php?action=showFormConnexionFromPost&amp;id=<?= $post['id'] ?>" ><form method="get" action="index.php?action=showFormConnexionFromPost&amp;id="<?= $post['id'] ?>><input class="btn_popup" type="button" value="Se Connecter ici !" /><input type="hidden" name="id" value="<?= $post['id'] ?>" /></form></a>
 </div>
 

@@ -14,11 +14,11 @@ if ((isset($_SESSION['id'])) && ($_SESSION['role'] === '2')) {
     <nav class="navigation">
         <ul class="nav">
             <li class="nav-item"><a href="index.php?action=home">Accueil</a></li>
-            <li class="nav-item"><a href="index.php?action=showPosts">Articles</a></li>
+            <li class="nav-item"><a href="index.php?action=showPosts">Chapitres</a></li>
             <li class="nav-item"><a href="index.php?action=showProfile&amp;id=<?= $_SESSION['id'] ?>">Profil</a></li>
             <li class="nav-item has-children"><span>Administration</span>
                 <ul class="nav-sub">
-                    <li class="nav-item-sub"><a href="index.php?action=showAdminPost&amp;id=<?= $_SESSION['id'] ?>">Gestion des articles</a></li>
+                    <li class="nav-item-sub"><a href="index.php?action=showAdminPost&amp;id=<?= $_SESSION['id'] ?>">Gestion des chapitres</a></li>
                     <li class="nav-item-sub"><a href="index.php?action=showAdminCommentsFlagged&amp;id=<?= $_SESSION['id'] ?>">Gestion des commentaires</a></li>
                     <li class="nav-item-sub"><a href="index.php?action=roleUsers&amp;id=<?= $_SESSION['id'] ?>">Gestion des utilisateurs</a></li>
                 </ul>
