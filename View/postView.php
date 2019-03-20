@@ -23,7 +23,7 @@ if (isset($_SESSION['id'])) {
    
     <div id="comments" name="comments">
         <fieldset>
-            <p><b><i>Le <?= $comment['comment_date_fr'] ?><br /><br /><u><?= $comment['author'] ?> a dit:</u><br /></i></b><br /><i>" <?= $comment['comment'] ?> "</i></p><p><a href="index.php?action=flagComment&amp;commentId=<?= $comment['id'] ?>&amp;id=<?= $_GET['id']; ?>" ><form method="get" action="index.php?action=flagComment&amp;commentId=<?= $comment['id'] ?>&amp;id=<?= $_GET['id']; ?>"><input type="button" value="Signaler le commentaire" /><input type="hidden" name="id" value="<?= $post['id'] ?>" /></form></a></p><br />
+            <p><b><i>Le <?= $comment['comment_date_fr'] ?><br /><br /><u><?= $comment['author'] ?> a dit:</u><br /></i></b><br /><i>" <?= $comment['comment'] ?> "</i></p><p><a class="link_stl_flag_comment" href="index.php?action=flagComment&amp;commentId=<?= $comment['id'] ?>&amp;id=<?= $_GET['id']; ?>" ><form method="get" action="index.php?action=flagComment&amp;commentId=<?= $comment['id'] ?>&amp;id=<?= $_GET['id']; ?>"><input type="button" class="btn_flag_comment" value="Signaler le commentaire" /><input type="hidden" name="id" value="<?= $post['id'] ?>" /></form></a></p><div class="success"><?php if ($comment['flagged'] == '1') echo '<p>Ce commentaire a bien été signalé et se trouve en attente de modération.</p>'; ?></div><br />
         </fieldset><br />
     </div>
     
@@ -51,11 +51,11 @@ if (isset($_SESSION['id'])) {
 <hr />
 
 
-<button class="btn_commentPost" >Commenter l'article: <?= '\'' . $post['title'] . '\'' ?> -></button><br />
+<button class="btn_commentPost" >Commenter le chapitre: <?= '\'' . $post['title'] . '\'' ?> -></button><br />
     
 <div class="popup">
     <p><span class=btn_closePopup>&times;</span></p>
-    <p class="txt_popup">Pour commenter l'article <?= '\'' . $post['title'] . '\'' ?> vous devez vous connecter !</p>
+    <p class="txt_popup">Pour commenter le chapitre <?= '\'' . $post['title'] . '\'' ?> vous devez vous connecter !</p>
     <a class="link_popup" href="index.php?action=showFormConnexionFromPost&amp;id=<?= $post['id'] ?>" ><form method="get" action="index.php?action=showFormConnexionFromPost&amp;id="<?= $post['id'] ?>><input class="btn_popup" type="button" value="Se Connecter ici !" /><input type="hidden" name="id" value="<?= $post['id'] ?>" /></form></a>
 </div>
 
@@ -66,9 +66,3 @@ if (isset($_SESSION['id'])) {
 
 
 
-
-
-<!-- 
-<script>refresh_comment()</script> 
-<script type="text/javascript" src="Content/JS/refresh_comments.js"></script> 
--->

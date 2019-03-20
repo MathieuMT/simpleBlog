@@ -4,8 +4,7 @@ require_once 'Model/Model.php';
 
 class AdminManagerPost extends Model  {
     
-    
-    
+    // Add a new post in the database:
     public function addNewPost($author, $title, $content) {
         
         
@@ -20,6 +19,7 @@ class AdminManagerPost extends Model  {
             
     }
     
+    // Delete a post in the database:
     public function deletePost($postId) {
         
         $sql = 'DELETE FROM posts WHERE id = :id';

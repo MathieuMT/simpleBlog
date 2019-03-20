@@ -33,8 +33,6 @@ class PostController {
         
         $author = htmlspecialchars($author);
         $content = htmlspecialchars($content);
-        
-        //$postId = $_POST['id'];
             
         $commentPost = $this->comment->addComment($author, $content, $postId);
              
@@ -43,51 +41,6 @@ class PostController {
         exit();
         
     }
-    
-    /*
-    public function refreshComments($postId, $author, $commentText) {
-        
-        $refreshComments = $this->comment->getComments($postId);
-        
-        if (isset($author) && isset($commentText)) {
-            
-            $flux = array(
-                    "author" => $author,
-                    "commentText" => $commentText,
-                    
-                    "comments" => "author = " . $author . " à dit : " . $commentText
-            
-            );
-            
-            echo json_encode($flux);
-        }
-        
-        */
-        
-        
-        
-        
-        /*
-        $refreshComments = $this->comment->getComments($postId);
-        
-        $json = '{';
-        
-        foreach($refreshComments as $comment) {
-            $json .= "{'author':'".$comment['author']."',";
-            $json .= "'comment':'".$comment['comment']."'},";
-        }
-        
-        $json .= '}';
-        
-        echo $json;
-        
-        */
-    /*
-    }
-    */
-    
-    
-    
     
  }
 

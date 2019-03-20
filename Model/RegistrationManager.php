@@ -4,8 +4,9 @@ require_once 'Model/Model.php';
 
 class RegistrationManager extends Model {
     
-    private $role= "membre";
+    private $role= "1";
     
+    //  Add a new user:
     public function addNewMember($role, $nickname, $hashPass, $email) {
         
         $sql = 'INSERT INTO members(role, nickname, pass, email, registration_date) VALUES(:role, :nickname, :pass, :email, CURDATE())';
@@ -19,6 +20,7 @@ class RegistrationManager extends Model {
         }
     }
     
+    // Check the nickname of the registrered user:
     public function checkNickname($nickname) {
         
         $sql = 'SELECT * FROM members WHERE nickname = :nickname';
@@ -33,6 +35,7 @@ class RegistrationManager extends Model {
         }
     }
     
+    // Check the e-mail of the registrered user:
     public function checkEmail($email) {
         
         $sql = 'SELECT * FROM members WHERE email = ?';

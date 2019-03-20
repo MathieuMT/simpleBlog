@@ -39,7 +39,7 @@ class PostManager extends Model {
         $sql = 'SELECT p.*, DATE_FORMAT(p.creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, COUNT(c.post_id) AS nb_comments FROM posts p LEFT JOIN comments c ON p.id = c.post_id GROUP BY p.id, c.post_id ORDER BY p.creation_date DESC';
         $nbCommentByPost = $this->executeQuery($sql);
         $articles = $nbCommentByPost->fetchAll();
-        //var_dump($articles);
+        
         return $articles;
     }
     

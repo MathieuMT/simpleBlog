@@ -7,8 +7,7 @@ class AdminControllerPost {
     
     private $post;
     private $showAdminPost;
-   /* private $listRole;*/
-   /* private $usersByRole;*/
+   
     
     
     public function __construct() {
@@ -23,6 +22,7 @@ class AdminControllerPost {
         $view->generate(array('posts' => $posts));
     }
     
+    // Add a new post:
     public function newPost($author, $title, $content) {
         
         $author = htmlspecialchars($author);
@@ -47,6 +47,7 @@ class AdminControllerPost {
           
     }
     
+    // Delete a post:
     public function removePost() {
         
         
@@ -59,8 +60,6 @@ class AdminControllerPost {
             $deletePost= $this->showAdminPost->deletePost($postId);
 
         }
-
-        //$posts = $this->post->getPostsWithNumberOfComments();
         
         header('Location: index.php?action=showAdminPost&id='. $_SESSION['id']);
         

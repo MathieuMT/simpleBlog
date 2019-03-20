@@ -14,12 +14,14 @@ class AdminUpdatePostController {
         $this->showUpdatePost = new AdminUpdatePostManager();
     }
 
+    // Get the post according to his id:
     public function post($postId) {
         $post = $this->post->getPost($postId);
         $view = new View("adminUpdatePostView");
         $view->generate(array('post' => $post));
     }
     
+    // Edit the author and post content based on the post id:
     public function updateEditPost($title, $content, $author, $postId) {
         
         $postId = intval($postId);

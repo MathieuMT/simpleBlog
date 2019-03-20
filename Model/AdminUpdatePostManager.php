@@ -4,7 +4,7 @@ require_once 'Model/Model.php';
 
 class AdminUpdatePostManager extends Model  {
     
-    
+    // Update post in the database:
     public function updatePost($title, $content, $author, $postId) {
         
         

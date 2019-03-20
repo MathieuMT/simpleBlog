@@ -46,7 +46,6 @@ class ConnexionController {
         }
             
         $isPasswordCorrect =  password_verify($passConnect, $connectedMember['pass']);
-         //var_dump($isPasswordCorrect);
          
          
         if (!empty($nicknameEmailConnect) || !empty($passConnect) || !empty($captcha)) {
@@ -146,7 +145,6 @@ class ConnexionController {
         }
             
         $isPasswordCorrect =  password_verify($passConnect, $connectedMember['pass']);
-         //var_dump($isPasswordCorrect);
         
         
         if (!empty($nicknameEmailConnect) || !empty($passConnect) || !empty($captcha) || !empty($idConnect)) {

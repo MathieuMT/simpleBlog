@@ -213,20 +213,17 @@ class Router {
                     
                 }else if ($_GET['action'] == 'roleUsers') {
                     
-                    //$userId = intval($this->getParameter($_GET, 'id'));
-
-                    //if ($userId > 0) {
                         
-                            $this->adminCtrlUser->showRoles();
+                    $this->adminCtrlUser->showRoles();
 
-                    //}
+                    
                 }else if ($_GET['action'] == 'updateRoleUsers') {
                     
-                    //$idUser = intval($this->getParameter($_GET, 'id'));
+                    $idUser = intval($this->getParameter($_POST, 'idUser'));
                     
-                    //if ($idUser) {
+                    if ($idUser) {
                         $this->adminCtrlUser->changeRoleUser();
-                    //}
+                    }
                     
                 }else if ($_GET['action'] == 'deleteUser') {
                     

@@ -30,6 +30,7 @@ class ProfileController {
         $view->generate(array('profile' => $profile, 'roleUser' => $roleUser));
     }
     
+    // Add a new avatar of the registered user:
     public function newAvatar($profileId, $avatar) {
         
         $this->avatar = $_FILES['avatar_field']['name'];
@@ -37,26 +38,14 @@ class ProfileController {
         $this->avatarSize = $_FILES['avatar_field']['size'];
         $this->validExtensions = array('jpg', 'jpeg', 'png', 'gif','JPG'); // Tableau des extensions acceptées à uploader.
         $this->uploadExtension = strtolower(substr(strrchr($_FILES['avatar_field']['name'], '.'), 1));
-        //var_dump($this->validExtensions);
-        //var_dump($this->avatar_tmp);
-        //var_dump($this->avatarSize);
-        //$profileAddAvatar;
-        //var_dump($this->avatar);
         
-        // recuperer l'extension de l'image
+        // recover the extension of the image:
         if (!empty($this->avatar)) {
              
             
-            $this->tailleMax =  2097152; // Taille limite en octets de la variable FILES à uploader (ici 2Mo).
-            //var_dump($this);
+            $this->tailleMax =  2097152; // Limit size in bytes of the variable FILES to upload (here 2Mo).
+            
             if ($this->avatarSize <= $this->tailleMax) {
-            //var_dump($this->avatarSize);
-            //var_dump($this->avatar_tmp);
-                //$image = explode('.', $this->avatar);
-                //print_r($image);
-                //$image_ext = end($image);
-                //var_dump($image_ext);
-                //print_r($image_ext);
 
                 if (in_array($this->uploadExtension,$this->validExtensions)) {
                     
@@ -105,14 +94,12 @@ class ProfileController {
         
     }
     
-    
+    // If there is no avatar:
     public function noAvatar($profileId) {
                    
         $this->profile->deleteAvatar($profileId);
         
         header('Location: index.php?action=showProfile&id=' . $profileId);
-                    
-        // $this->success['profileAvatar'] = 'Vous avez bien supprimé l\'avatar de votre profil';
 
         $profile = $this->profile->getProfile($profileId);
         $roleUser = $this->profile->getRoleUser($profileId);
@@ -120,12 +107,13 @@ class ProfileController {
         $view->generate(array('profile' => $profile, 'roleUser' => $roleUser, 'error' => $this->error, 'success' => $this->success));
     }
     
+    // Update the nickname of the registered user:
     public function editNickname($profileId, $newNickname) {
         
         $newNickname = htmlspecialchars($newNickname);
         $profile = $this->profile->getProfile($profileId);
         
-        // Pour changer de pseudo en fonction de l'id de l'utilisateur:
+        // To change the nickname according to the user's id:
         if (isset($newNickname) and !empty($newNickname) and $newNickname != $profile['nickname']) {
             
             $this->profile->updateNickname($profileId, $newNickname);
@@ -144,12 +132,13 @@ class ProfileController {
         
     }
     
+    // Update the e-mail of the registered user:
     public function editEmail($profileId, $newEmail) {
         
         $newEmail = htmlspecialchars($newEmail);
         $profile = $this->profile->getProfile($profileId);
         
-            // Pour changer d'e-mail en fonction de l'id de l'utilisateur:
+            // To change the e-mail according to the user's id:
         if (isset($newEmail) and !empty($newEmail) and $newEmail != $profile['email']) {
             
             
@@ -169,10 +158,11 @@ class ProfileController {
 
     }
     
+    // Update the password of the registered user:
     public function editPass($profileId, $newPass1, $newPass2) {
         
         
-        // Pour changer de mot de passe en fonction de l'id de l'utilisateur:
+        // To change the password according to the user's id:
         if (isset($newPass1) and !empty($newPass1) and isset($newPass2) and !empty($newPass2)) {
             $newPass1 = htmlspecialchars($newPass1);
             $newPass2 = htmlspecialchars($newPass2);
@@ -200,15 +190,15 @@ class ProfileController {
             }
     }
     
+    // Update the electronic signature of the registered user:
     public function editSignatureElectric($profileId, $newElectronicSignature) {
         
         $profile = $this->profile->getProfile($profileId);
         
-        // SIGNATURE ÉLECTRONIQUE => Si la variable signature existe bien et qu'elle n'est pas vide :
+        // ELECTRONIC SIGNATURE => if the signature variable exists and is not empty:
         if (isset($newElectronicSignature) and !empty($newElectronicSignature)) {
             
             $newElectronicSignature = nl2br(htmlspecialchars($newElectronicSignature));
-            //$newElectronicSignature;
             
             $this->profile->updateElectronicSignature($profileId, $newElectronicSignature);
             
@@ -220,6 +210,7 @@ class ProfileController {
         $view->generate(array('profile' => $profile, 'roleUser' => $roleUser, 'error' => $this->error, 'success' => $this->success)); 
     }
     
+    // If there is no signature:
     public function noSignature($profileId) {
         
         $this->profile->deleteSignature($profileId);

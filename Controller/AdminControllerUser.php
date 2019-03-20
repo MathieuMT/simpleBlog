@@ -9,14 +9,13 @@ class AdminControllerUser {
     
  
     private $roleOfUsers;
-   /* private $listRole;*/
-   /* private $usersByRole;*/
     
     
     public function __construct() {
         $this->roleOfUsers = new AdminManagerUser();
     }
-   
+
+    // Get role of users:
     public function showRoles() {
         
         $usersByRole;
@@ -41,6 +40,7 @@ class AdminControllerUser {
         $view->generate(array('roleOfUsers' => $roleOfUsers, 'usersByRole' => $usersByRole));
     }
     
+    // Update role of user:
     public function changeRoleUser() {
          
         if (isset($_POST['updateRole'])) {
@@ -58,6 +58,7 @@ class AdminControllerUser {
  
     }
     
+    // Delete user:
     public function removeUser() {
         
         

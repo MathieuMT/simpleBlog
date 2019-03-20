@@ -14,16 +14,25 @@ To use a "minimum height: 100%" on the global #, we need:
 html, body {
     padding: 0;
     margin: 0;
-    height: 100%;
     text-align: center;
 }
 
 body {
     color: #bfbfbf;
-    background: black;
+    background-color: #2f404f;
     font-family: 'Futura-Medium', 'Futura', 'Trebuchet MS', sans-serif;
-    padding-bottom: 9%;
-    margin: auto;
+}
+
+header {
+    margin:0;
+    padding: 0 0;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+#title-book {
+    font-size: 12px;
+    text-align: center;
 }
 
 h1 {
@@ -38,6 +47,39 @@ a#link_totalPost {
     text-decoration: none;
 }
 
+button#btn_totalPost, button.btn_commentPost, input.btn_popup, input#btn_registration, input#btn_connexion, input.btn_flag_comment, input.btn_approve_comment, input.btn_delete_comment {
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgba(19,242,232,0.6);
+    color:rgba(242,19,232,0.6);
+    font-weight: bold;
+    font-size: 10px;
+    text-shadow: -0.2px 0 white;
+    cursor: pointer;
+}
+
+label.stl-label {
+    text-shadow: -0.2px 0 white;
+    color:rgba(242,19,232,0.6);
+}
+
+.tox-editor-container div.tox-menubar, .tox-editor-container div.tox-toolbar{
+    background-color: rgba(19,242,232,0.6);
+}
+
+.tox-editor-container iframe#content_ifr.tox-edit-area__iframe {
+    background-color:rgba(242,19,232,0.6);
+}
+
+
+
+input.style {
+    border:none;
+    background-color: rgba(19,242,232,0.6);
+    color:rgba(255,255,255,0.6);
+}
+
 input#btn_totalPost {
     background-color: blue;
     color: #bfbfbf;
@@ -47,13 +89,17 @@ input#btn_totalPost {
     font-size: 6.5px;
 }
 
+a.link_stl_flag_comment {
+    text-decoration: none;
+}
+
 .nbComs{
     text-align: right;
 }
 
-#buffer_block {
+.buffer_block {
     height: 0;
-    margin-bottom: 4%;
+    margin-bottom: 0;
 }
 
 #global {
@@ -63,10 +109,10 @@ input#btn_totalPost {
     flex-direction: column;
     min-height: 100%;  
     background: #333534;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;    
     text-align: justify;
-    padding: 0px 20px;
+    padding: 0px 0px;
     box-sizing:content-box;
 }
 
@@ -76,13 +122,29 @@ input#btn_totalPost {
     justify-content: center;
     flex-direction: column;
     width: 70%;
+    padding: 0px 20px;
     box-sizing:content-box;
     margin-bottom : 30px;
+    text-align: center;
 }
 
-#blogTitle, #blogFooter {
+#blogTitle {
     font-size: 20px;
     text-align: center;
+}
+
+#blogFooter {
+    font-size: 10px;
+    text-align: center;
+}
+
+#banniere-image {
+    padding: 0;
+    margin:auto;
+    background: url('../img/couverture.jpg') no-repeat;
+    background-size: cover;
+    height: 100%;
+    z-index: 100;
 }
 
 #titleAnswers {
@@ -115,13 +177,13 @@ input#btn_totalPost {
 }
 
 .header {
-    z-index: 1000;
+    z-index: 10000;
     background-color: #2f404f;
 }
 
 .header-top {
     display: flex;
-    height: 75px;
+    height: 85px;
     padding: 0 15px;
 }
 
@@ -216,6 +278,10 @@ input#btn_totalPost {
     display: flex;
 }
 
+li.nav-item-sub a{
+    font-size: 11px;
+}
+
 li.nav-item-sub {
     flex: 1 1 auto;
     text-align: right;
@@ -225,6 +291,7 @@ li.nav-item-sub {
 li.nav-item-sub > a {
     color: white;
     text-decoration: none;
+    
 }
 
 #registration_wrapper {
@@ -271,6 +338,10 @@ input::placeholder {
 
 .error {
     color: red;
+}
+
+.active {
+    display: none;
 }
 
 .btn_commentPost {
@@ -363,6 +434,8 @@ input.btn_popup {
     border-radius: 50%;
     margin-top: 5px;
     padding: 2px 6px;
+    background-color: rgba(255,255,255,0.6);
+    color:rgba(242,19,232,0.6);
 }
 
 .btn_closePopup, .btn_closePopupAvatar, .btn_closePopupNickname, .btn_closePopupEmail, .btn_closePopupPass, .btn_closePopupSignatureElectronic, .btn_closePopupDeletetSignatureElectronic, .btn_closePopupNewPost {
@@ -424,6 +497,8 @@ h3.titre_gestion_blog {
     cursor: pointer;
     border-radius: 5px;
     border: none;
+    background-color: rgba(255,255,255,0.6);
+    color:rgba(242,19,232,0.6);
 }
 
 fieldset  {
@@ -476,26 +551,60 @@ iframe {
     
     #global {
         width: 70%;
+        padding: 0;
     }
-
-    #content {
+    
+    header {
+        margin:0;
+        padding: 0 0;
         width: 100%;
     }
     
-    #blogTitle, #blogFooter {
-    font-size: 35px;
-    text-align: center;
+    #banniere-image {
+        padding: 0;
+        margin:auto;
+        background: url('../img/couverture.jpg') no-repeat;
+        background-size: cover;
+        height: 200%;
+        z-index: 100;
     }
     
-    #buffer_block {
-        height: 9%;
+    #title-book {
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    #content {
+        margin-top: 310px;
+        width: 100%;
+    }
+    
+    #blogTitle {
+        font-size: 35px;
+        text-align: center;
+    }
+
+
+    #blogFooter {
+        font-size: 15px;
+        text-align: center;
+    }
+    
+    .buffer_block {
+        height: 0;
+        margin-bottom: 6.5%;
     }
     
     .header {
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        top:0;
         display: flex;
         width: 100%;
         position: fixed;
-        height: 85px;
+        height: 100px;
+        box-shadow: 25px 0px 15px 15px rgba(0, 0, 255, .2);
     }
     
     .btn-menu {

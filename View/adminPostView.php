@@ -14,7 +14,7 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === '2') {
     
         <fieldset>
            
-            <label for="addNewPost">Ajouter un nouveau chapitre: </label><br /><br />
+            <label for="addNewPost" class="stl-label">Ajouter un nouveau chapitre: </label><br /><br />
             
             <button type="submit" class="btn_addNewPost" id="addNewPost"><i class="far fa-newspaper"></i></button><br /><br />
       
@@ -26,19 +26,19 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === '2') {
                 
                 <form method="POST" action="index.php?action=formAddNewPost">
                    
-                    <label class="label_author_new_post" for="author">Auteur du chapitre : </label> 
+                    <label class="label_author_new_post stl-label" for="author">Auteur du chapitre : </label> 
                         
-                    <input type="text" id="author" class="input_field " name="author" placeholder="Pseudo de l'auteur" autofocus/><br /><br />
+                    <input type="text" id="author" class="input_field style" name="author" placeholder="Pseudo de l'auteur" autofocus/><br /><br />
                         
-                    <label class="label_title_new_post" for="title">Titre du chapitre : </label> 
+                    <label class="label_title_new_post stl-label" for="title">Titre du chapitre : </label> 
                         
-                    <input type="text" id="title" class="input_field " name="title" placeholder="Titre de l'article" /><br /><br />
+                    <input type="text" id="title" class="input_field style" name="title" placeholder="Titre de l'article" /><br /><br />
                         
-                    <label class="label_content_new_post" for="content">Nouveau chapitre : </label><br /><br /> 
+                    <label class="label_content_new_post stl-label" for="content">Nouveau chapitre : </label><br /><br /> 
                        
                     <textarea class="textarea_new_post mytinymce" id="content" name="content" placeholder="Ajouter le contenu de votre article ici !..."></textarea><br />
                     
-                    <label for="submit_add_new_post">Ajouter le chapitre : </label><br />
+                    <label for="submit_add_new_post" class="stl-label">Ajouter le chapitre : </label><br />
                     
                     <button type="submit" name="submit_add_new_post" class="btn_submit_add_new_post" id="submit_add_new_post"><i class="fas fa-plus"></i></button>
                     
@@ -97,4 +97,8 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === '2') {
 ?>
 
 
+
+<script src="Content/JS/btn_addNewPost.js"></script>
+<script src="Content/plugin/tinymce/js/tinymce/init-tinymce.js"></script>
+<script src="Content/plugin/tinymce/js/tinymce/langs/fr_FR.js"></script>
 

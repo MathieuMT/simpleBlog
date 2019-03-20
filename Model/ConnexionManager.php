@@ -3,6 +3,7 @@ require_once 'Model/Model.php';
 
 class ConnexionManager extends Model  {
     
+    // Function for connectec user:
     public function connectedMember($nicknameEmailConnect, $isEmail) {
     
         if($isEmail) {

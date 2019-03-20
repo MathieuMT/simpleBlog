@@ -6,7 +6,7 @@ require_once 'Model/Model.php';
 
 class AdminManagerUser extends Model  {
    
-    
+    // Get role of users:
     public function getRoleOfUsers() {
 
         $sql = 'SELECT * FROM roles';
@@ -20,7 +20,7 @@ class AdminManagerUser extends Model  {
         } 
     }
     
-    
+    // Get users by role:
     public function getUsersByRole($role = NULL) {
         
         $usersByRole;
@@ -45,42 +45,13 @@ class AdminManagerUser extends Model  {
             }
     }
     
-    
-    public function updateRole($roleId) {
-       
-      
-           
-        
-        $sql = 'UPDATE roles SET role_name WHERE role_id = :role_id';
-       
-       
-        
-        //$sql = 'UPDATE roles INNER JOIN members ON roles.role_name = members.role SET members.role = :role WHERE id = :id ';
-    
-        $updateRole = $this->executeQuery($sql,array(
-                    'role_id' => $roleId
-                    ));
-        
-         if ($updateRole->nextRowset() > 0) {   
-                return $updateRole->fetchAll();
-            
-         }
-        
-    }
-    
+    // Update role of registered user:
     public function updateRoleUser($role, $idUser) {
        
-      
-           
-        
-        $sql = 'UPDATE roles SET role_name WHERE role_id = :role_id';
-       
-       
-        
-        //$sql = 'UPDATE roles INNER JOIN members ON roles.role_name = members.role SET members.role = :role WHERE id = :id ';
+       $sql = 'UPDATE members SET role = :role WHERE id = :id';
     
         $updateRole = $this->executeQuery($sql,array(
-                    'role_name' => $role,
+                    'role' => $role,
                     'id' => $idUser
                     ));
         
@@ -91,6 +62,7 @@ class AdminManagerUser extends Model  {
         
     }
     
+    // Delete user:
     public function deleteUser($idUser) {
         
         $sql = 'DELETE FROM members WHERE id = :id';

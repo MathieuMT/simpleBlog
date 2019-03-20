@@ -8,7 +8,6 @@ class AdminControllerCommentsFlagged {
     private $post;
     private $comment;
     private $showAdminCommentsFlagged;
-   
     
     public function __construct() {
         $this->post = new PostManager();
@@ -16,6 +15,7 @@ class AdminControllerCommentsFlagged {
         $this->showAdminCommentsFlagged = new AdminManagerCommentsFlagged();
     }
 
+    // Get the comment flagged according to his id:
     public function flaggedComments($commentId) {
         
         $flag = $this->showAdminCommentsFlagged->getFlaggedComments($commentId);
@@ -26,7 +26,8 @@ class AdminControllerCommentsFlagged {
         exit();
         
     }
- 
+    
+    // Comment to report based on its id and post id:
     public function flagComment($commentId, $postId) {
         $comments = $this->comment->getComments($postId);
         $postId = $_GET['id'];
@@ -37,14 +38,16 @@ class AdminControllerCommentsFlagged {
         $post = $this->post->getPost($postId);
         $comments = $this->comment->getComments($postId);
         
+            
         $view = new View("postView");
         $view->generate(array('post' => $post, 'comments' => $comments));
         
         exit();
-        }
+        } 
         
     } 
     
+    // Delete the comment flagged:
     public function deleteComment($commentId) {
         
         $commentId = $_GET['commentId'];
@@ -63,6 +66,7 @@ class AdminControllerCommentsFlagged {
         }
     }
     
+    // Approve the comment flagged:
     public function approveComment($commentId) {
         
         $commentId = $_GET['commentId'];

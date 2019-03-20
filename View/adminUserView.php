@@ -25,8 +25,6 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === '2') {
 
                 <?php endforeach; ?>
                 
-                <!--<option value="all">Tous les rôles</option>-->
-                
             </select>
             
             <input type="submit" name="btn_dropdown_role" value="Sélectionner" />
@@ -35,7 +33,7 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === '2') {
      </form>
        
         <fieldset>Liste de utilisateurs par rôle:
-            <?php //print_r($usersByRole) ?>
+
            <?php foreach($usersByRole as $u_role ): ?> 
                 <ul>
                     <li>
@@ -53,10 +51,10 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === '2') {
                        
                         <select name="updateRole">
                             
-                            <option value="membre" <?php if ($u_role['role_id'] === '1') {
+                            <option value="1" <?php if ($u_role['role_id'] === '1') {
         ?>selected="selected"<?php
     } ?>>membre</option>
-                            <option value="administrateur" <?php if ($u_role['role_id'] === '2') {
+                            <option value="2" <?php if ($u_role['role_id'] === '2') {
         ?>selected="selected"<?php
     } ?>>administrateur</option> 
                              
@@ -81,13 +79,7 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === '2') {
             <?php endforeach; ?>
             
         </fieldset>
-        
-        
-        
-   
-    
-    
-    
+            
 </div>
 
 

@@ -1,6 +1,6 @@
-const btn2 = document.querySelector('.btn_commentPost');
-const popup = document.querySelector('.popup');
-const cross = document.querySelector('.btn_closePopup');
+var btn2 = document.querySelector('.btn_commentPost');
+var popup = document.querySelector('.popup');
+var cross = document.querySelector('.btn_closePopup');
 
 
 btn2.addEventListener('click', function() {

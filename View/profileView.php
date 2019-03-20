@@ -358,7 +358,6 @@ if (isset($_SESSION['id'])) {
 <script src="Content/JS/btn_updatePass.js"></script>
 <script src="Content/JS/btn_updateSignature.js"></script>
 <script src="Content/JS/btn_deleteSignature.js"></script>
-<script src="Content/JS/btn_addNewPost.js"></script>
 
 
 

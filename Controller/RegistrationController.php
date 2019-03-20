@@ -17,7 +17,8 @@ class RegistrationController {
         $view = new View('registrationView');
         $view->generate([]);
     }
-        
+    
+    // Add a new user:    
     public function newMemberRegistration($nickname, $pass, $checkPass, $email) {
         
         /* Avoid injecting user code into the fields of the form (against the XSS flaw): */
@@ -44,6 +45,7 @@ class RegistrationController {
         $view->generate(['error' => $this->error, 'success' => $this->success]); 
     }
     
+    // Check parameters of the form of registration:
     private function verifyParameters($nickname, $pass, $checkPass, $email) {
         
         $checkNickname = $this->verifyNickname($nickname);
@@ -59,6 +61,7 @@ class RegistrationController {
         
     }
     
+     // Check the nickname of the registrered user:
     private function verifyNickname($nickname) {
         
         $check = true;
@@ -83,6 +86,7 @@ class RegistrationController {
         return $check;
     }
     
+    // Check the e-mail of the registrered user:
     private function verifyEmail($email) {
         
         $check = true;
@@ -101,6 +105,7 @@ class RegistrationController {
         return $check;
     }
     
+    // Check the password l of the registrered user:
     private function verifyPassword($pass, $checkPass) {
         
         $check = true;
@@ -113,6 +118,7 @@ class RegistrationController {
         return $check;
     }
     
+    // Check the field of the form of the registrered user is not empty:
     private function verifyFieldEmpty($nickname, $pass, $checkPass, $email) {
         
         $check = true;
