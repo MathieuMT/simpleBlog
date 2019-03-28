@@ -269,15 +269,6 @@ class Router {
                     
                     $this->connexCtrl->showFormConnexionFromPost($postIdRef);
                     
-                }else if ($_GET['action'] == 'connexionFromPost') {
-                    
-                    $nicknameEmailConnect = $this->getParameter($_POST, 'nicknameEmailConnect');
-                    $passConnect = $this->getParameter($_POST, 'passConnect');
-                    $idConnect = intval($this->getParameter($_POST, 'idConnect'));
-                    $captcha = $this->getParameter($_POST, 'captcha');
-                    
-                    $this->connexCtrl->loginMemberFromPost($nicknameEmailConnect,$passConnect,$captcha,$idConnect);
-                    
                 }else if ($_GET['action'] == 'logout') {
                     
                     $this->logoutCtrl->logoutMember();

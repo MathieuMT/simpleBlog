@@ -65,11 +65,6 @@ class ConnexionController {
 
                                 $_SESSION['email'] = $connectedMember['email'];
                                  
-                                
-                                
-
-                                $_SESSION['email'] = $connectedMember['email']; 
-                                 
 
                                  
                                 
@@ -131,83 +126,6 @@ class ConnexionController {
         
         return false;
         
-    }
-    
-    // LOGIN FROM A SPECIFIC POST:
-    public function loginMemberFromPost($nicknameEmailConnect,$passConnect,$captcha,$idConnect) {
-        
-        /* Avoid injecting user code into the fields of the form (against the XSS flaw): */
-        $nicknameEmailConnect = htmlspecialchars($nicknameEmailConnect);
-        $passConnect = htmlspecialchars($passConnect);
-        $idConnect = htmlspecialchars($idConnect);
-        $captcha = htmlspecialchars($captcha);
-        
-        $connectedMember;
-        
-        if ($this->isEmail($nicknameEmailConnect)) {
-            // If the Email is valid:
-            $connectedMember = $this->manager->connectedMember($nicknameEmailConnect, true);
-        }
-        else {
-            // If the Nickname is valid:
-            $connectedMember = $this->manager->connectedMember($nicknameEmailConnect, false);
-        }
-            
-        $isPasswordCorrect =  password_verify($passConnect, $connectedMember['pass']);
-        
-        
-        if (!empty($nicknameEmailConnect) || !empty($passConnect) || !empty($captcha) || !empty($idConnect)) {
-            if ($idConnect) {
-                if ($connectedMember) {
-                    if ($isPasswordCorrect) {
-
-
-                        
-                        if ($captcha == $_SESSION['captcha']) {
-                            
-                            $_SESSION['id'] = $connectedMember['id'];
-                            $_SESSION['role'] = $connectedMember['role'];
-                            $_SESSION['nickname'] = $connectedMember['nickname'];
-                            $_SESSION['email'] = $connectedMember['email'];
-
-                            
-                            
-                            
-                            $this->success['connexion'] = 'Vous êtes bien connecté !';
-                            
-                            header('Location: index.php?action=post&id='.$idConnect);
-                            
-                  
-                            $this->success['connexion'] = 'Vous êtes bien connecté !';
-
-                            header('Location: index.php?action=post&id='.$idConnect);
-
-                        }else {
-                            $this->error['connexion'] = 'Captcha invalide !';
-                        }
-                            
-
-                   }else {
-                       //Le return la aussi
-                       $this->error['connexion'] = 'Votre Pseudo ou email ou mot de passe est invalide !';
-                   }
-               }else {
-                   $this->error['connexion'] = 'Vous n\'êtes pas inscrit !<br /><button class="btn_register"><a class="link_register" href="index.php?action=showFormRegistration">S\'inscrire ici</a>';
-
-                   header('Location:index.php?action=showFormRegistration');
-               }   
-            }else {
-                $this->error['connexion'] = 'Identifiant inéxistant !';
-            }
-            
-       } else {
-           $this->error['field'] = 'Tous les champs doivent être remplis!';
-       } 
-        
-        $view = new View('connexionView');
-        $view->generate(['error' => $this->error, 'success' => $this->success]); 
-        
-        exit();
     }
     
 }
