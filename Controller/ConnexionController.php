@@ -1,5 +1,5 @@
 <?php
-//require_once 'Content/Captcha/captcha.php';
+
 require_once 'Model/ConnexionManager.php';
 require_once 'View/View.php';
 
@@ -57,38 +57,19 @@ class ConnexionController {
 
                         if ($captcha == $_SESSION['captcha']) {
                             
-                             if (!$idConnect){
-                                 
                                 $_SESSION['id'] = $connectedMember['id'];
                                 $_SESSION['role'] = $connectedMember['role'];
                                 $_SESSION['nickname'] = $connectedMember['nickname'];
-
                                 $_SESSION['email'] = $connectedMember['email'];
-                                 
-
-                                 
-                                
+                            
                                 $this->success['connexion'] = 'Vous êtes bien connecté !';
+                            
+                             if (!$idConnect){
                                 
                                 header('Location: index.php?action=home');
 
-                                    
-
-                                 
                             }else{
-                                 
-                                 
-                                $_SESSION['id'] = $connectedMember['id'];
-                                $_SESSION['role'] = $connectedMember['role'];
-                                $_SESSION['nickname'] = $connectedMember['nickname'];
-                                $_SESSION['email'] = $connectedMember['email']; 
-                                 
-
-                                
-                                 
-
-                                $this->success['connexion'] = 'Vous êtes bien connecté !';
-                                 
+                                  
                                 header('Location: index.php?action=post&id='.$idConnect);
                             } 
                         }else {
